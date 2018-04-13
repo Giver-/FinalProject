@@ -10,6 +10,27 @@ Partial Class Store
 
 
 #Region "Page Links"
+    'these are the links for the image buttons they look way better but are a pain since you need to add pictures Im just gping to use them as is without pictures for now and we can change that later
+    Protected Sub ibLinkToMens_Click(sender As Object, e As ImageClickEventArgs) Handles ibLinkToMens.Click
+        MultiView1.ActiveViewIndex = 1
+        'for mens section we can use a call method here and for womens that can change the ddl for the store to only show mens or womens items if this link is clicked that way we only need to use one page
+    End Sub
+    Protected Sub ibLinkToWomens_Click(sender As Object, e As ImageClickEventArgs) Handles ibLinkToWomens.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
+
+    'these links are image buttons for the deals we can just set them to +=1 the cart infomation and sql stuff to track
+    Protected Sub ibDeal1_Click(sender As Object, e As ImageClickEventArgs) Handles ibDeal1.Click
+
+    End Sub
+    Protected Sub ibDeal2_Click(sender As Object, e As ImageClickEventArgs) Handles ibDeal2.Click
+
+    End Sub
+    Protected Sub ibDeal3_Click(sender As Object, e As ImageClickEventArgs) Handles ibDeal3.Click
+
+    End Sub
+
+    'these are the link button links dont look that great but might be nice to have to navigate while we work on the site
     Protected Sub LinkButton1_Click(sender As Object, e As EventArgs) Handles LinkButton1.Click
         MultiView1.ActiveViewIndex = 1
     End Sub
@@ -46,8 +67,8 @@ Partial Class Store
     Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
         MultiView1.ActiveViewIndex = 3
     End Sub
-    Protected Sub ibLinkToMens_Click(sender As Object, e As ImageClickEventArgs) Handles ibLinkToMens.Click
-        MultiView1.ActiveViewIndex = 1
-    End Sub
 #End Region
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+    End Sub
 End Class
