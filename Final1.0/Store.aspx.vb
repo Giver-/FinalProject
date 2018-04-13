@@ -1,6 +1,12 @@
-﻿
+﻿Imports System.Data
+Imports System.Data.SqlClient
 Partial Class Store
     Inherits System.Web.UI.Page
+
+    Public Shared con As New SqlConnection("Data Source=cb-ot-devst04.ad.wsu.edu;Initial Catalog=MF81ryan.j.griffin;Persist Security Info=True; User ID=ryan.j.griffin;Password=d3a8e399")
+    Private Sub Store_Init(sender As Object, e As EventArgs) Handles Me.Init
+        MultiView1.ActiveViewIndex = 0
+    End Sub
 
 
 #Region "Page Links"
@@ -40,6 +46,8 @@ Partial Class Store
     Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
         MultiView1.ActiveViewIndex = 3
     End Sub
+    Protected Sub ibLinkToMens_Click(sender As Object, e As ImageClickEventArgs) Handles ibLinkToMens.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
 #End Region
-
 End Class
