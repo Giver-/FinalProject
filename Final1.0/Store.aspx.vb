@@ -5,6 +5,7 @@ Partial Class Store
 
     Public Shared con As New SqlConnection("Data Source=cb-ot-devst04.ad.wsu.edu;Initial Catalog=MF81ryan.j.griffin;Persist Security Info=True; User ID=ryan.j.griffin;Password=d3a8e399")
 
+
 #Region "Update and clear"
     Private Sub Store_Init(sender As Object, e As EventArgs) Handles Me.Init
         MultiView1.ActiveViewIndex = 0
