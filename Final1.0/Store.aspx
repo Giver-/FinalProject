@@ -123,7 +123,6 @@
                 <asp:View ID="View2" runat="server">
                     <span class="auto-style1"><strong>Store</strong></span><br />
                     <br />
-                    <asp:LinkButton ID="LinkButton2" runat="server">To Cart</asp:LinkButton>
                     &nbsp;&nbsp;
                     <asp:LinkButton ID="LinkButton4" runat="server">Home</asp:LinkButton>
                     <br />
@@ -174,6 +173,12 @@
                             </td>
                             <td>&nbsp;</td>
                         </tr>
+                        <tr>
+                            <td class="auto-style17">Finished adding Items? Continue to your cart &gt;&gt;&gt;&gt;&gt;</td>
+                            <td>
+                                <asp:LinkButton ID="LinkButton2" runat="server">To Cart</asp:LinkButton>
+                            </td>
+                        </tr>
                     </table>
                     <br />
                     <br />
@@ -193,17 +198,30 @@
                     <br />
                     <table class="auto-style2">
                         <tr>
-                            <td class="auto-style18">Cart Items</td>
-                            <td>&nbsp;</td>
+                            <td class="auto-style18">Your Cart Items</td>
+                            <td>
+                                <asp:GridView ID="gvCart" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                    <FooterStyle BackColor="#CCCCCC" />
+                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                </asp:GridView>
+                            </td>
                         </tr>
                         <tr>
                             <td class="auto-style18">&nbsp;</td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style21">Existing Customer? Enter your customerID#(Fill boxes below with info)</td>
+                            <td class="auto-style21">Existing Customer? Select your customerID#(Fill boxes below with info)</td>
                             <td class="auto-style22">
-                                <asp:TextBox ID="tbEnterExistingCust" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="ddlSelectCustomerID" runat="server" AutoPostBack="True">
+                                </asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
@@ -235,15 +253,33 @@
                             </td>
                         </tr>
                         <tr>
+                            <td class="auto-style18">City</td>
+                            <td>
+                                <asp:TextBox ID="tbNCCity" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style18">State</td>
+                            <td>
+                                <asp:TextBox ID="tbNCState" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style18">Zip code</td>
+                            <td>
+                                <asp:TextBox ID="tbNCZip" runat="server"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="auto-style23">Credit Card #</td>
                             <td class="auto-style24">
                                 <asp:TextBox ID="tbNCCreditCard" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style25"></td>
+                            <td class="auto-style25">Add your info then select from the ddl</td>
                             <td class="auto-style26">
-                                <asp:Button ID="bAddCustomer" runat="server" Text="AddCustomer" Width="151px" />
+                                <asp:Button ID="bAddCustomer" runat="server" Text="Add Customer" Width="151px" />
                             </td>
                         </tr>
                     </table>
@@ -278,6 +314,40 @@
                     Shows Favortie items, stock, best customers, total revenue, item revenue
                     <br />
                     <br />
+                    <table class="auto-style2">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:GridView ID="gvCustomerMng" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                    <FooterStyle BackColor="#CCCCCC" />
+                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                </asp:GridView>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
                     <br />
                     <br />
                     <br />
