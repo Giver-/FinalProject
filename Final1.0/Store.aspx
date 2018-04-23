@@ -91,7 +91,7 @@
                     <br />
                     <table class="auto-style2">
                         <tr>
-                            <td class="auto-style3" colspan="3"><strong>Deals of the day! </strong><span class="auto-style7">(click to purchse)</span></td>
+                            <td class="auto-style3" colspan="3">Popular Items<strong> </strong><span class="auto-style7">(click to purchse)</span></td>
                         </tr>
                         <tr>
                             <td class="auto-style14">
@@ -102,6 +102,7 @@
                             </td>
                             <td class="auto-style12">
                                 <asp:ImageButton ID="ibDeal3" runat="server" Height="241px" Width="415px" />
+                                &nbsp;
                             </td>
                         </tr>
                         <tr>
@@ -188,7 +189,7 @@
                     <br />
                 </asp:View>
                 <asp:View ID="View3" runat="server">
-                    <span class="auto-style1"><strong>Cart</strong></span><br />
+                    Rewards<br />
                     <asp:LinkButton ID="LinkButton5" runat="server">Back To Store</asp:LinkButton>
                     &nbsp;&nbsp;
                     <asp:LinkButton ID="LinkButton6" runat="server">CheckOut</asp:LinkButton>
@@ -313,6 +314,8 @@
                     <br />
                     Shows Favortie items, stock, best customers, total revenue, item revenue
                     <br />
+                    <br />
+                    Jared: Add inventory<br />
                     <br />
                     <table class="auto-style2">
                         <tr>

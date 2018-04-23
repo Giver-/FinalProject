@@ -12,6 +12,7 @@ Partial Class Store
         FILLDDLProductsList()
         FILLDDLCustomerIDCart()
         FillManagmentCustomers()
+        GetRecordsNT()
     End Sub
 #End Region
 
@@ -23,7 +24,7 @@ Partial Class Store
         With cmdInsertProductToCart.Parameters
             .Clear()
             .AddWithValue("@p1", ddlShopSelect.SelectedIndex)
-            .AddWithValue("@p2", ddlShopSelect.SelectedValue)
+            .AddWithValue("@p2", ddlShopSelect.SelectedItem.Text)
             .AddWithValue("@p3", ddlShopQuantity.SelectedValue)
         End With
 
@@ -64,7 +65,7 @@ Partial Class Store
 
 #End Region
 
-#Region "Cart CheckOut"
+#Region "Rewards Transactions"
     Protected Sub bEnterExistCust_Click(sender As Object, e As EventArgs) Handles bEnterExistCust.Click
 
         'figure out how to clear the cart table  Dim ClearCart As New SqlCommand("Update pCart SET CartID = 0, ProductID = 0, ProductName = none", con)
