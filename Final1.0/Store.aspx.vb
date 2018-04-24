@@ -60,6 +60,8 @@ Partial Class Store
             End With
         Catch ex As Exception
             Response.Write(ex.Message)
+        Finally
+            con.Close()
         End Try
     End Sub
 
