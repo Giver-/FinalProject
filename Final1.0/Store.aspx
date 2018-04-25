@@ -7,71 +7,29 @@
     <title></title>
     <style type="text/css">
         .auto-style1 {
-            font-size: x-large;
-        }
-        .auto-style2 {
-            width: 100%;
-        }
-        .auto-style3 {
-            font-size: xx-large;
-            text-align: center;
-            width: 1883px;
-        }
-        .auto-style7 {
             font-size: large;
+            text-align: right; 
         }
-        .auto-style11 {
-            height: 394px;
-            width: 1883px;
-        }
-        .auto-style14 {
-            height: 176px;
-            width: 1883px;
-            text-align: center;
-        }
-        .auto-style16 {
-            height: 16px;
-            font-size: xx-large;
-            text-align: center;
-            width: 1883px;
-        }
-        .auto-style17 {
-            width: 458px;
-        }
-        .auto-style18 {
-            width: 460px;
-        }
-        .auto-style19 {
-            width: 460px;
-            height: 91px;
-        }
-        .auto-style20 {
-            height: 91px;
-        }
-        .auto-style21 {
-            width: 460px;
-            height: 39px;
-        }
-        .auto-style22 {
-            height: 39px;
-        }
-        .auto-style23 {
-            width: 460px;
-            height: 32px;
-        }
-        .auto-style24 {
-            height: 32px;
-        }
-        .auto-style25 {
-            width: 460px;
-            height: 56px;
-        }
-        .auto-style26 {
-            height: 56px;
+        
+        .left {
+            position: relative;
+            left: 20px;
+            width: 300px;
+            padding: 10px;
         }
 
+        .leftgrid {
+            
+            position: relative;
+            left: 20px;
+            padding: 10px;
+        }
+
+ 
         ul { 
-            list-style-type: none; 
+            list-style-type: none;
+            position: sticky;
+            top: 0; 
             margin: 0; 
             padding: 0; 
             overflow: hidden; 
@@ -90,22 +48,27 @@
         li a:hover{ 
             background-color: #898787; 
         }
-        .newStyle1 {
+        .columnwidth{ 
+            column-width: 200px; 
         }
+       
     </style>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="View1" runat="server">
-                    <span class="newStyle1"><strong>Home</strong><br />
-                    <br />
-                    </span>
-                    <ul class="newStyle1"> 
+                    <span class="auto-style1"><strong>Home</strong></span><ul class="newStyle1"> 
                         <li><asp:LinkButton ID="LinkButton1" runat="server">Store</asp:LinkButton></li>
                         &nbsp;&nbsp;
                         <li> <asp:LinkButton ID="LinkButton3" runat="server">Manager Page</asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton13" runat="server">Rewards</asp:LinkButton></li>
+                        <li> <asp:LinkButton ID="LinkButton14" runat="server">Checkout</asp:LinkButton></li>
                         &nbsp;</ul>
                     <span class="newStyle1">
                     <br />
@@ -115,7 +78,7 @@
                     </span>
                     <table class="newStyle1">
                         <tr>
-                            <td class="auto-style3">Popular Items<strong> </strong><span class="auto-style7">(click to purchse)</span></td>
+                            <td class="auto-style1">Popular Items<strong> </strong><span class="auto-style7">(click to purchse)</span></td>
                         </tr>
                         <tr>
                             <td class="auto-style14">
@@ -129,9 +92,9 @@
                             <td class="auto-style16"><strong>Pick Section</strong><span class="auto-style7">(Click to select)</span></td>
                         </tr>
                         <tr>
-                            <td class="auto-style11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <td class="auto-style11">
                                 <asp:ImageButton ID="ibLinkToMens" runat="server" Height="350px" ImageUrl="~/NikeMens.jpg" Width="450px" />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                
                                 <asp:ImageButton ID="ibLinkToWomens" runat="server" Height="350px" ImageUrl="~/Nike.jpg" Width="450px" />
                             </td>
                         </tr>
@@ -144,12 +107,12 @@
                     </span>
                 </asp:View>
                 <asp:View ID="View2" runat="server">
-                    <span class="auto-style1"><strong>Store</strong></span><br />
-                    <br />
-                    &nbsp;&nbsp;
-                    <ul> 
-                    <li> <asp:LinkButton ID="LinkButton4" runat="server">Home</asp:LinkButton> </li> 
-                     </ul> 
+                    <span class="auto-style1"><strong>Store</strong></span>
+                    <ul>
+                        <li>
+                            <asp:LinkButton ID="LinkButton4" runat="server">Home</asp:LinkButton>
+                        </li>
+                    </ul>
                     <br />
                     <br />
                     Lists of items with ddl lits (and pictures?)<br />
@@ -213,12 +176,12 @@
                     <br />
                 </asp:View>
                 <asp:View ID="View3" runat="server">
-                    Rewards<br />
-                    <ul>
-                        <li><asp:LinkButton ID="LinkButton5" runat="server">Store</asp:LinkButton></li>
+                    <span class="auto-style1"><strong>Rewards</strong></span><br />
+                        <ul>
+                            <li><asp:LinkButton ID="LinkButton5" runat="server">Store</asp:LinkButton></li>
                         &nbsp;&nbsp;
-                        <li><asp:LinkButton ID="LinkButton6" runat="server">Checkout</asp:LinkButton></li>
-                     </ul>
+                            <li><asp:LinkButton ID="LinkButton6" runat="server">Checkout</asp:LinkButton></li>
+                        </ul>
                     &nbsp;<br />
                     <br />
                     Shows items up for purchase can remove items and shows total<br />
@@ -317,7 +280,7 @@
                     <br />
                 </asp:View>
                 <asp:View ID="View4" runat="server">
-                    <span class="auto-style1"><strong>CheckOut</strong></span><br />
+                    <span class="auto-style1"><strong>Checkout</strong></span><br />
                     <ul><li><asp:LinkButton ID="LinkButton7" runat="server">Rewards</asp:LinkButton></li>
                     &nbsp;&nbsp;&nbsp;
                     <li><asp:LinkButton ID="LinkButton8" runat="server">Store</asp:LinkButton></li></ul>
@@ -327,7 +290,7 @@
                     <br />
                     <br />
                 </asp:View>
-                <asp:View ID="View5" runat="server">
+                   <asp:View ID="View5" runat="server">
                     
                     <span class="auto-style1"><strong>Manager</strong></span><br />
                     <ul>
@@ -339,52 +302,135 @@
                     &nbsp;&nbsp;&nbsp;
                         <li><asp:LinkButton ID="LinkButton12" runat="server">Checkout</asp:LinkButton></li>
                     </ul>
+
                     <br />
                     <br />
                     Shows Favortie items, stock, best customers, total revenue, item revenue
                     <br />
                     <br />
-                    Jared: Add inventory<br />
+                    <div class="container, left">
+                        <h3>Add New Inventory</h3>
+          
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Open Add Inventory Form</button>
+                        <div id="demo" class="collapse">
+                        <p></p>
+                        <p>Product ID</p>
+                        <asp:TextBox ID="tbProductID" runat="server"></asp:TextBox>
+                        <p></p>
+                        <p>Product Name</p>
+                           
+                        <asp:TextBox ID="tbProductName" runat="server"></asp:TextBox>
+                        <p></p>
+                        <p> Product Price</p>
+
+                        <asp:TextBox ID="tbProductPrice" runat="server"></asp:TextBox>
+                        <p></p>
+                        <p>Product Quantity</p>
+ 
+                        <asp:TextBox ID="tbProductInventory" runat="server"></asp:TextBox>
+                        <p></p>
+                        <p>Product Size</p>
+
+                        <asp:TextBox ID="tbProductSize" runat="server"></asp:TextBox>
+                        <p> </p>
+                        <asp:Button ID="btAddInventory" runat="server" Text="Enter Item" Width="116px" />
+                       
+                    </div>
+          
                     <br />
-                    <table class="auto-style2">
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <asp:GridView ID="gvCustomerMng" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
-                                    <AlternatingRowStyle BackColor="#CCCCCC" />
-                                    <FooterStyle BackColor="#CCCCCC" />
-                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                    <SortedAscendingHeaderStyle BackColor="#808080" />
-                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                    <SortedDescendingHeaderStyle BackColor="#383838" />
-                                </asp:GridView>
-                            </td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </table>
+               
+                    
+                        <h3>Store Data</h3>
+                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2, #demo3">Open Store Data</button>
+                        <div id="demo2" class="collapse">
+                            <div class="container, left">
+                                
+                                        <div class="panel panel-primary" style ="display:inline-block">
+                                            <div class="panel-heading"><h3 class ="panel-title"> Customer Data </h3></div>
+                                                <div class ="panel-body"> 
+                                                    <div class ="panel panel-info" style ="display:inline-block">
+                                                        <div class ="panel-heading">Filter</div>
+                                                             <div class="panel-body"> 
+                                                                <asp:RadioButtonList ID="rblSortCustomers" runat="server" AutoPostBack="True">
+                                                                <asp:ListItem>Sort By Name</asp:ListItem>
+                                                                <asp:ListItem>Sort By City</asp:ListItem>
+                                                                <asp:ListItem>Sort by Amount Spent</asp:ListItem>
+                                                                </asp:RadioButtonList>
+                                          
+                                                             </div>
+                                                        </div> 
+                                                    </div>
+                                            <div class ="panel-body" style ="display:inline-block">
+                                                     <table class="auto-style2">
+                       
+                                                        <asp:GridView ID="gvCustomerMng" runat="server" BackColor="White" BorderColor="#999999"                 BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                                            <AlternatingRowStyle BackColor="#CCCCCC" />
+                                                            <FooterStyle BackColor="#CCCCCC" />
+                                                            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                                            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                                            <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                            <SortedAscendingHeaderStyle BackColor="#808080" />
+                                                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                            <SortedDescendingHeaderStyle BackColor="#383838" />
+                                                        </asp:GridView>
+                                
+                
+                                                        </table>
+                                                  </div>  
+                                          </div>
+                                    </div>
+                                 
+                         
+                        
+                          <div id="demo3" class ="collapse">
+                              <div class ="container, left"> 
+                                        <div class="panel panel-primary" style ="display:inline-block">
+                                            <div class="panel-heading"><h3 class ="panel-title"> Transaction Data </h3></div>
+                                                <div class ="panel-body"> 
+                                                    <div class ="panel panel-info" style ="display:inline-block">
+                                                        <div class ="panel-heading">Filter</div>
+                                                             <div class="panel-body"> 
+                                                                   <asp:RadioButtonList ID="rblSortTransactions" runat="server" AutoPostBack="True">
+                                                                    <asp:ListItem>Sort By Quantity</asp:ListItem>
+                                                                    <asp:ListItem>Sort By Product</asp:ListItem>
+                                                                    <asp:ListItem>Sort by Transaction</asp:ListItem>
+                                                                    </asp:RadioButtonList>
+                                                          </div>
+                                                        </div> 
+                                                    </div>
+                                        <div class ="panel-body" style ="display:inline-block">
+                                          <table class ="auto-style2">
+                                          
+                                                <asp:GridView ID="gvInventMng" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                                    <FooterStyle BackColor="#CCCCCC" />
+                                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                                </asp:GridView>
+                                          </table>
+                                             </div>  
+                                          </div>
+                                    </div>
+                               </div>
+                       
+                        </div>
+                   </div>
+        
+            
+              
+
+                
                     <br />
                     <br />
                     <br />
-                </asp:View>
-            </asp:MultiView>
+              </asp:View>
+    </asp:MultiView>
             <br />
             <br />
             <br />
@@ -400,7 +446,7 @@
             <br />
             <br />
             <br />
-        </div>
+       
     </form>
 </body>
 </html>

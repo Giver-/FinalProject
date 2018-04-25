@@ -12,6 +12,8 @@ Partial Class Store
         FILLDDLProductsList()
         FILLDDLCustomerIDCart()
         FillManagmentCustomers()
+        FillTransactionTable()
+
         GetRecordsNT()
     End Sub
 #End Region
@@ -19,7 +21,7 @@ Partial Class Store
 #Region "New Order"
     Protected Sub bAddToCart_Click(sender As Object, e As EventArgs) Handles bAddToCart.Click
 
-        Dim cmdInsertProductToCart As New SqlCommand("INSERT pCart (ProductID, ProductName, Quantity) VALUES (@p1, @p2, @p3)", con)
+        Dim cmdInsertProductToCart As New SqlCommand("INSERT pTransactionHistory (ProductID, ProductName, Quantity) VALUES (@p1, @p2, @p3)", con)
 
         With cmdInsertProductToCart.Parameters
             .Clear()
@@ -70,7 +72,7 @@ Partial Class Store
 #Region "Rewards Transactions"
     Protected Sub bEnterExistCust_Click(sender As Object, e As EventArgs) Handles bEnterExistCust.Click
 
-        'figure out how to clear the cart table  Dim ClearCart As New SqlCommand("Update pCart SET CartID = 0, ProductID = 0, ProductName = none", con)
+        'figure out how to clear the cart table  Dim ClearCart As New SqlCommand("Update pTransactionHistory SET CartID = 0, ProductID = 0, ProductName = none", con)
 
         Dim UpdateProductInventory As New SqlCommand("UPDATE pProducts SET", con)
 
@@ -108,8 +110,6 @@ Partial Class Store
 
     End Sub
 
-
-
 #End Region
 
 #Region "Fill Customer DDL In cart"
@@ -135,7 +135,7 @@ Partial Class Store
 
 #Region "Fill Cart GridView"
     Private Sub GetRecordsNT()
-        Dim RecordsCart As New SqlDataAdapter("SELECT * FROM pCart", con)
+        Dim RecordsCart As New SqlDataAdapter("SELECT * FROM pTransactionHistory", con)
         Dim RecordsCartItems As New DataTable
 
         If RecordsCartItems.Rows.Count > 0 Then
@@ -171,8 +171,74 @@ Partial Class Store
         End Try
     End Sub
 
+    Private Sub FillTransactionTable() 'fills transaction table 
+        Dim RecordsTransaction As New SqlDataAdapter("SELECT * FROM pTransactionHistory", con)
+        Dim RecordsTransactionList As New DataTable
+
+        If RecordsTransactionList.Rows.Count > 0 Then
+            RecordsTransactionList.Rows.Clear()
+        End If
+
+        Try
+            RecordsTransaction.Fill(RecordsTransactionList)
+            gvInventMng.DataSource = RecordsTransactionList
+            gvInventMng.DataBind()
+
+        Catch ex As Exception
+            Response.Write(ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub OrderByQuantity()
+        Dim RecordsOrderQuantity As New SqlDataAdapter("SELECT * FROM pTransactionHistory ORDER BY Quantity", con)
+        Dim RecordsTransactionList As New DataTable
+
+        If RecordsTransactionList.Rows.Count > 0 Then
+            RecordsTransactionList.Rows.Clear()
+        End If
+
+        Try
+            RecordsOrderQuantity.Fill(RecordsTransactionList)
+            gvInventMng.DataSource = RecordsTransactionList
+            gvInventMng.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+#End Region
+
+#Region "Sort Transaction Data"
 
 #End Region
+
+#Region "Add New Inventory Item"
+    Protected Sub btAddInventory_Click(sender As Object, e As EventArgs) Handles btAddInventory.Click
+
+        Dim cmdInsertNewInventory As New SqlCommand("INSERT pProducts (ProductID, ProductName, ProductPrice, ProductInventory, ProductSize) VALUES (@p1, @p2, @p3, @p4, @p5)", con)
+
+        With cmdInsertNewInventory.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbProductID.Text)
+            .AddWithValue("@p2", tbProductName.Text)
+            .AddWithValue("@p3", tbProductPrice.Text)
+            .AddWithValue("@p4", tbProductInventory.Text)
+            .AddWithValue("@p5", tbProductSize.Text)
+
+        End With
+
+        Try
+            If con.State = ConnectionState.Closed Then con.Open()
+            cmdInsertNewInventory.ExecuteNonQuery()
+            Response.Write("Inventory Added")
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+#End Region
+
 
 #Region "Page Links"
     'these are the links for the image buttons they look way better but are a pain since you need to add pictures Im just gping to use them as is without pictures for now and we can change that later
@@ -232,6 +298,12 @@ Partial Class Store
     Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
         MultiView1.ActiveViewIndex = 3
     End Sub
-#End Region
+    Protected Sub LinkButton13_Click(sender As Object, e As EventArgs) Handles LinkButton13.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton14_Click(sender As Object, e As EventArgs) Handles LinkButton14.Click
+        MultiView1.ActiveViewIndex = 3
+    End Sub
 
+#End Region
 End Class
