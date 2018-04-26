@@ -10,27 +10,29 @@ Partial Class Store
     Private Sub Store_Init(sender As Object, e As EventArgs) Handles Me.Init
         MultiView1.ActiveViewIndex = 0
         FILLDDLProductsList()
-        FILLDDLCustomerIDCart()
         FillManagmentCustomers()
+        FillTransactionTable()
+        GetRecordsFavorties()
+        GetRecordsCustomerInfo()
+
     End Sub
 #End Region
 
 #Region "New Order"
     Protected Sub bAddToCart_Click(sender As Object, e As EventArgs) Handles bAddToCart.Click
 
-        Dim cmdInsertProductToCart As New SqlCommand("INSERT pCart (ProductID, ProductName, Quantity) VALUES (@p1, @p2, @p3)", con)
+        Dim cmdInsertProductToCart As New SqlCommand("INSERT pTransactionHistory (ProductID, ProductName, Quantity) VALUES (@p1, @p2, @p3)", con)
 
         With cmdInsertProductToCart.Parameters
             .Clear()
             .AddWithValue("@p1", ddlShopSelect.SelectedIndex)
-            .AddWithValue("@p2", ddlShopSelect.SelectedValue)
+            .AddWithValue("@p2", ddlShopSelect.SelectedItem.Text)
             .AddWithValue("@p3", ddlShopQuantity.SelectedValue)
         End With
 
         Try
             If con.State = ConnectionState.Closed Then con.Open()
             cmdInsertProductToCart.ExecuteNonQuery()
-            GetRecordsNT()
             Response.Write("Item Added to cart")
         Catch ex As Exception
             Response.Write(ex.Message)
@@ -59,21 +61,19 @@ Partial Class Store
             End With
         Catch ex As Exception
             Response.Write(ex.Message)
+        Finally
+            con.Close()
         End Try
     End Sub
 
 #End Region
 
-#Region "Cart CheckOut"
-    Protected Sub bEnterExistCust_Click(sender As Object, e As EventArgs) Handles bEnterExistCust.Click
-
-        'figure out how to clear the cart table  Dim ClearCart As New SqlCommand("Update pCart SET CartID = 0, ProductID = 0, ProductName = none", con)
-
-        Dim UpdateProductInventory As New SqlCommand("UPDATE pProducts SET", con)
+#Region "Store Customer Rewards and info pull"
+    Protected Sub bViewCusRewards_Click(sender As Object, e As EventArgs) Handles bViewCusRewards.Click
 
     End Sub
-
 #End Region
+
 
 #Region "Add new customer"
 
@@ -107,40 +107,36 @@ Partial Class Store
 
 #End Region
 
-#Region "Fill Customer DDL In cart"
-    Private Sub FILLDDLCustomerIDCart()
-        Dim SelectProduct As New SqlDataAdapter("SELECT CustomerID, Name FROM pCustomers", con)
-        Dim dtProduct As New DataTable
+#Region "Fill Customer Info GridViews"
+    Private Sub GetRecordsFavorties()
+        Dim RecordsFavorite As New SqlDataAdapter("SELECT * FROM pFavorites", con)
+        Dim RecordFavoriteItems As New DataTable
+
+        If RecordFavoriteItems.Rows.Count > 0 Then
+            RecordFavoriteItems.Rows.Clear()
+        End If
 
         Try
-            SelectProduct.Fill(dtProduct)
-
-            With ddlSelectCustomerID
-                .DataSource = dtProduct
-                .DataValueField = "CustomerID"
-                .DataTextField = "Name"
-                .DataBind()
-                .Items.Insert(0, "Select Your Name")
-            End With
+            RecordsFavorite.Fill(RecordFavoriteItems)
+            gvRewardFav.DataSource = RecordFavoriteItems
+            gvRewardFav.DataBind()
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
     End Sub
-#End Region
 
-#Region "Fill Cart GridView"
-    Private Sub GetRecordsNT()
-        Dim RecordsCart As New SqlDataAdapter("SELECT * FROM pCart", con)
-        Dim RecordsCartItems As New DataTable
+    Private Sub GetRecordsCustomerInfo()
+        Dim RecordsCustomerInfo As New SqlDataAdapter("SELECT * FROM pCustomers", con)
+        Dim RecordCustomerProproties As New DataTable
 
-        If RecordsCartItems.Rows.Count > 0 Then
-            RecordsCartItems.Rows.Clear()
+        If RecordCustomerProproties.Rows.Count > 0 Then
+            RecordCustomerProproties.Rows.Clear()
         End If
 
         Try
-            RecordsCart.Fill(RecordsCartItems)
-            gvCart.DataSource = RecordsCartItems
-            gvCart.DataBind()
+            RecordsCustomerInfo.Fill(RecordCustomerProproties)
+            gvRewardCustomer.DataSource = RecordCustomerProproties
+            gvRewardCustomer.DataBind()
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
@@ -165,30 +161,75 @@ Partial Class Store
         End Try
     End Sub
 
+    Private Sub FillTransactionTable() 'fills transaction table 
+        Dim RecordsTransaction As New SqlDataAdapter("SELECT * FROM pTransactionHistory", con)
+        Dim RecordsTransactionList As New DataTable
+
+        If RecordsTransactionList.Rows.Count > 0 Then
+            RecordsTransactionList.Rows.Clear()
+        End If
+
+        Try
+            RecordsTransaction.Fill(RecordsTransactionList)
+            gvInventMng.DataSource = RecordsTransactionList
+            gvInventMng.DataBind()
+
+        Catch ex As Exception
+            Response.Write(ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub OrderByQuantity()
+        Dim RecordsOrderQuantity As New SqlDataAdapter("SELECT * FROM pTransactionHistory ORDER BY Quantity", con)
+        Dim RecordsTransactionList As New DataTable
+
+        If RecordsTransactionList.Rows.Count > 0 Then
+            RecordsTransactionList.Rows.Clear()
+        End If
+
+        Try
+            RecordsOrderQuantity.Fill(RecordsTransactionList)
+            gvInventMng.DataSource = RecordsTransactionList
+            gvInventMng.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+#End Region
+
+#Region "Sort Transaction Data"
 
 #End Region
 
+#Region "Add New Inventory Item"
+    Protected Sub btAddInventory_Click(sender As Object, e As EventArgs) Handles btAddInventory.Click
+
+        Dim cmdInsertNewInventory As New SqlCommand("INSERT pProducts (ProductID, ProductName, ProductPrice, ProductInventory, ProductSize) VALUES (@p1, @p2, @p3, @p4, @p5)", con)
+
+        With cmdInsertNewInventory.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbProductID.Text)
+            .AddWithValue("@p2", tbProductName.Text)
+            .AddWithValue("@p3", tbProductPrice.Text)
+            .AddWithValue("@p4", tbProductInventory.Text)
+            .AddWithValue("@p5", tbProductSize.Text)
+
+        End With
+
+        Try
+            If con.State = ConnectionState.Closed Then con.Open()
+            cmdInsertNewInventory.ExecuteNonQuery()
+            Response.Write("Inventory Added")
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+#End Region
+
 #Region "Page Links"
-    'these are the links for the image buttons they look way better but are a pain since you need to add pictures Im just gping to use them as is without pictures for now and we can change that later
-    Protected Sub ibLinkToMens_Click(sender As Object, e As ImageClickEventArgs) Handles ibLinkToMens.Click
-        MultiView1.ActiveViewIndex = 1
-        'for mens section we can use a call method here and for womens that can change the ddl for the store to only show mens or womens items if this link is clicked that way we only need to use one page
-    End Sub
-    Protected Sub ibLinkToWomens_Click(sender As Object, e As ImageClickEventArgs) Handles ibLinkToWomens.Click
-        MultiView1.ActiveViewIndex = 1
-    End Sub
-
-    'these links are image buttons for the deals we can just set them to +=1 the cart infomation and sql stuff to track
-    Protected Sub ibDeal1_Click(sender As Object, e As ImageClickEventArgs) Handles ibDeal1.Click
-
-    End Sub
-    Protected Sub ibDeal2_Click(sender As Object, e As ImageClickEventArgs) Handles ibDeal2.Click
-
-    End Sub
-    Protected Sub ibDeal3_Click(sender As Object, e As ImageClickEventArgs) Handles ibDeal3.Click
-
-    End Sub
-
     'these are the link button links dont look that great but might be nice to have to navigate while we work on the site
     Protected Sub LinkButton1_Click(sender As Object, e As EventArgs) Handles LinkButton1.Click
         MultiView1.ActiveViewIndex = 1
@@ -226,6 +267,12 @@ Partial Class Store
     Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
         MultiView1.ActiveViewIndex = 3
     End Sub
-#End Region
+    Protected Sub LinkButton13_Click(sender As Object, e As EventArgs) Handles LinkButton13.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton14_Click(sender As Object, e As EventArgs) Handles LinkButton14.Click
+        MultiView1.ActiveViewIndex = 3
+    End Sub
 
+#End Region
 End Class
