@@ -6,15 +6,22 @@ Partial Class Store
     Public Shared con As New SqlConnection("Data Source=cb-ot-devst04.ad.wsu.edu;Initial Catalog=MF81ryan.j.griffin;Persist Security Info=True; User ID=ryan.j.griffin;Password=d3a8e399")
 
 
+
 #Region "Update and clear"
     Private Sub Store_Init(sender As Object, e As EventArgs) Handles Me.Init
+
         MultiView1.ActiveViewIndex = 0
         FILLDDLProductsList()
         FILLDDLCustomerIDCart()
         FillManagmentCustomers()
         FillTransactionTable()
+        FillProductTable()
 
         GetRecordsNT()
+
+
+        MaintainScrollPositionOnPostBack = True
+
     End Sub
 #End Region
 
@@ -190,7 +197,29 @@ Partial Class Store
         End Try
     End Sub
 
-    Private Sub OrderByQuantity()
+
+    Private Sub FillProductTable()
+        Dim RecordsProducts As New SqlDataAdapter("SELECT * FROM pProducts", con)
+        Dim RecordsProductsList As New DataTable
+
+        If RecordsProductsList.Rows.Count > 0 Then
+            RecordsProductsList.Rows.Clear()
+        End If
+
+        Try
+            RecordsProducts.Fill(RecordsProductsList)
+            gvProductOrderBy.DataSource = RecordsProductsList
+            gvProductOrderBy.DataBind()
+
+        Catch ex As Exception
+            Response.Write(ex.Message)
+
+        End Try
+    End Sub
+#End Region
+
+#Region "Sorting Functions"
+    Private Sub OrderByQuantity() 'transactions 
         Dim RecordsOrderQuantity As New SqlDataAdapter("SELECT * FROM pTransactionHistory ORDER BY Quantity", con)
         Dim RecordsTransactionList As New DataTable
 
@@ -206,10 +235,187 @@ Partial Class Store
             Response.Write(ex.Message)
         End Try
     End Sub
+
+    Private Sub OrderByProduct() 'transactions 
+        Dim RecordsOrderQuantity As New SqlDataAdapter("SELECT * FROM pTransactionHistory ORDER BY ProductID", con)
+        Dim RecordsTransactionList As New DataTable
+
+        If RecordsTransactionList.Rows.Count > 0 Then
+            RecordsTransactionList.Rows.Clear()
+        End If
+
+        Try
+            RecordsOrderQuantity.Fill(RecordsTransactionList)
+            gvInventMng.DataSource = RecordsTransactionList
+            gvInventMng.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub OrderByTransaction() 'transactions
+        Dim RecordsOrderQuantity As New SqlDataAdapter("SELECT * FROM pTransactionHistory ORDER BY TransactionID", con)
+        Dim RecordsTransactionList As New DataTable
+
+        If RecordsTransactionList.Rows.Count > 0 Then
+            RecordsTransactionList.Rows.Clear()
+        End If
+
+        Try
+            RecordsOrderQuantity.Fill(RecordsTransactionList)
+            gvInventMng.DataSource = RecordsTransactionList
+            gvInventMng.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub OrderByMoneySpent() 'customers
+        Dim RecordsCustomerSpent As New SqlDataAdapter("SELECT * FROM pCustomers ORDER BY MoneySpent", con)
+        Dim RecordsCustomerList As New DataTable
+
+        If RecordsCustomerList.Rows.Count > 0 Then
+            RecordsCustomerList.Rows.Clear()
+        End If
+
+        Try
+            RecordsCustomerSpent.Fill(RecordsCustomerList)
+            gvCustomerMng.DataSource = RecordsCustomerList
+            gvCustomerMng.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub OrderByCity() 'customers
+        Dim RecordsCustomerSpent As New SqlDataAdapter("SELECT * FROM pCustomers ORDER BY City", con)
+        Dim RecordsCustomerList As New DataTable
+
+        If RecordsCustomerList.Rows.Count > 0 Then
+            RecordsCustomerList.Rows.Clear()
+        End If
+
+        Try
+            RecordsCustomerSpent.Fill(RecordsCustomerList)
+            gvCustomerMng.DataSource = RecordsCustomerList
+            gvCustomerMng.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub OrderByName() 'customers
+        Dim RecordsCustomerSpent As New SqlDataAdapter("SELECT * FROM pCustomers ORDER BY Name", con)
+        Dim RecordsCustomerList As New DataTable
+
+        If RecordsCustomerList.Rows.Count > 0 Then
+            RecordsCustomerList.Rows.Clear()
+        End If
+
+        Try
+            RecordsCustomerSpent.Fill(RecordsCustomerList)
+            gvCustomerMng.DataSource = RecordsCustomerList
+            gvCustomerMng.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+
+    'price, inventory size 
+
+    Private Sub OrderByPrice() 'products
+        Dim RecordsProductOrder As New SqlDataAdapter("SELECT * FROM pProducts ORDER BY ProductPrice", con)
+        Dim RecordsProductList As New DataTable
+
+        If RecordsProductList.Rows.Count > 0 Then
+            RecordsProductList.Rows.Clear()
+        End If
+
+        Try
+            RecordsProductOrder.Fill(RecordsProductList)
+            gvProductOrderBy.DataSource = RecordsProductList
+            gvProductOrderBy.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub OrderByInventory() 'products
+        Dim RecordsProductOrder As New SqlDataAdapter("SELECT * FROM pProducts ORDER BY ProductInventory", con)
+        Dim RecordsProductList As New DataTable
+
+        If RecordsProductList.Rows.Count > 0 Then
+            RecordsProductList.Rows.Clear()
+        End If
+
+        Try
+            RecordsProductOrder.Fill(RecordsProductList)
+            gvProductOrderBy.DataSource = RecordsProductList
+            gvProductOrderBy.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub OrderBySize() 'products
+        Dim RecordsProductOrder As New SqlDataAdapter("SELECT * FROM pProducts ORDER BY ProductSize", con)
+        Dim RecordsProductList As New DataTable
+
+        If RecordsProductList.Rows.Count > 0 Then
+            RecordsProductList.Rows.Clear()
+        End If
+
+        Try
+            RecordsProductOrder.Fill(RecordsProductList)
+            gvProductOrderBy.DataSource = RecordsProductList
+            gvProductOrderBy.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
 #End Region
 
-#Region "Sort Transaction Data"
+#Region "Radio Button Select Cases Processes"
+    Protected Sub btFilterTransactions_Click(sender As Object, e As EventArgs) Handles btFilterTransactions.Click
+        'select case to provide different sorting functions depending on selected radiobuttonlist selection 
 
+
+
+        Select Case rblSortTransactions.SelectedIndex
+            Case 0
+                OrderByQuantity()
+
+            Case 1
+                OrderByProduct()
+            Case 2
+                OrderByTransaction()
+
+        End Select
+    End Sub
+
+    Protected Sub btCustomerData_Click(sender As Object, e As EventArgs) Handles btCustomerData.Click
+
+        Select Case rblSortCustomers.SelectedIndex
+            Case 0
+                OrderByName()
+            Case 1
+                OrderByCity()
+            Case 2
+                OrderByMoneySpent()
+        End Select
+    End Sub
+
+    Protected Sub btProductOrderBy_Click(sender As Object, e As EventArgs) Handles btProductOrderBy.Click
+
+        Select Case rblProductList.SelectedIndex
+            Case 0
+                OrderByPrice()
+            Case 1
+                OrderByInventory()
+            Case 2
+                OrderBySize()
+        End Select
+    End Sub
 #End Region
 
 #Region "Add New Inventory Item"
@@ -306,4 +512,7 @@ Partial Class Store
     End Sub
 
 #End Region
+
+
+
 End Class
