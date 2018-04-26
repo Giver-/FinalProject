@@ -105,8 +105,6 @@ Partial Class Store
 
     End Sub
 
-
-
 #End Region
 
 #Region "Fill Customer DDL In cart"
@@ -148,7 +146,6 @@ Partial Class Store
         End Try
     End Sub
 #End Region
-
     'Managment Area
 #Region "Mangment Info Fill grid views"
     Private Sub FillManagmentCustomers()
