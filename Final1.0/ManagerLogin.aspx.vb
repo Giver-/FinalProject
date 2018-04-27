@@ -16,11 +16,11 @@ Partial Class ManagerLogin
 
         Dim cmdCheckRegistrant As New SqlCommand("Select Count(*) from pManagerLogin WHERE ManagerLogin = @p1 AND ManagerPassword = @p2", con)
 
-        Dim intRows As Integer = 0 'this LOCAL variable is used to hold the results of the SELECT COUNT query – the # of rows
+        Dim intRows As Integer = 0
 
-            'if the user tried 3 times then they need to be locked out, so the controls on the form are all hidden to prevent continual usage of the system.       
+        'if the user tried 3 times then they need to be locked out, so the controls on the form are all hidden to prevent continual usage of the system.       
 
-            If gintloopcounter = 2 Then
+        If gintloopcounter = 2 Then
 
                 Response.Write("System locked due to excessive attempts")
                 Button1.Visible = False
@@ -29,17 +29,17 @@ Partial Class ManagerLogin
                 Exit Sub
             End If
 
-        'here we add the parameters to the sqlcommand
+        'add the parameters to the sqlcommand
         With cmdCheckRegistrant.Parameters
             .Clear()
             .AddWithValue("@p1", tbManagerID.Text)
             .AddWithValue("@p2", tbManagerPW.Text)
         End With
 
-        Try 'ok here is the action
+        Try '
 
-                If con.State = ConnectionState.Closed Then con.Open()
-                intRows = cmdCheckRegistrant.ExecuteScalar
+            If con.State = ConnectionState.Closed Then con.Open()
+            intRows = cmdCheckRegistrant.ExecuteScalar
             'see we are counting rows to see if a row of data was found in the registered user table with the supplied userID and password.
 
             If intRows = 0 Then
@@ -50,17 +50,16 @@ Partial Class ManagerLogin
             End If
 
 
-            'next – success! If a user was found in the approved user table then go to another webpage
 
             If intRows = 1 Then
                 Response.Redirect("Store.aspx?id=4")
                 Exit Sub
-                End If
+            End If
 
-            Catch ex As Exception
-                Response.Write(ex.Message)
-            Finally
-                con.Close()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        Finally
+            con.Close()
             End Try
         End Sub
 

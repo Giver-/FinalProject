@@ -604,7 +604,7 @@ Partial Class Store
         MultiView1.ActiveViewIndex = 1
     End Sub
     Protected Sub LinkButton17_Click(sender As Object, e As EventArgs) Handles LinkButton17.Click
-        MultiView1.ActiveViewIndex = 4
+        Response.Redirect("ManagerLogin.aspx") 'redirect to login page 
     End Sub
     Protected Sub LinkButton18_Click(sender As Object, e As EventArgs) Handles LinkButton18.Click
         MultiView1.ActiveViewIndex = 2
@@ -613,7 +613,7 @@ Partial Class Store
         MultiView1.ActiveViewIndex = 3
     End Sub
     Protected Sub LinkButton20_Click(sender As Object, e As EventArgs) Handles LinkButton20.Click
-        MultiView1.ActiveViewIndex = 4
+        Response.Redirect("ManagerLogin.aspx") 'login page
     End Sub
     Protected Sub LinkButton21_Click(sender As Object, e As EventArgs) Handles LinkButton21.Click
         MultiView1.ActiveViewIndex = 2
@@ -625,10 +625,10 @@ Partial Class Store
         MultiView1.ActiveViewIndex = 0
     End Sub
     Protected Sub LinkButton24_Click(sender As Object, e As EventArgs) Handles LinkButton24.Click
-        MultiView1.ActiveViewIndex = 4
+        Response.Redirect("ManagerLogin.aspx") 'login page 
     End Sub
     Protected Sub LinkButton26_Click(sender As Object, e As EventArgs) Handles LinkButton26.Click
-        MultiView1.ActiveViewIndex = 4
+        Response.Redirect("ManagerLogin.aspx")
     End Sub
 
 

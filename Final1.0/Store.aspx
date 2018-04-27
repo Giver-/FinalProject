@@ -65,9 +65,8 @@
        font-family: Lato;
     }   
      
-    body {
-    margin-top: 25px;
-    font-size: 21px;
+     body{
+
 
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
 
@@ -424,9 +423,10 @@
                     <!----Shows Favortie items, stock, best customers, total revenue, item revenue -->
                          
 
-
+<div class="col-sm-8">
  <div id="my-accordion" class="accordion, left">
     <h3>Store Data</h3>
+
     <div class="accordion-group">
         <div class="accordion-heading">
             <a href="#collapse-year-2012" data-parent="#my-accordion" data-toggle="collapse" class="accordion-toggle btn btn-info">Hide/Show</a>
@@ -436,6 +436,41 @@
 
 
                 <div>
+                                                <div class ="container, left"> 
+                                                        <div class="panel panel-primary" style ="display:inline-block">
+                                                            <div class="panel-heading"><h3 class ="panel-title">Transaction Data</h3></div>
+                                                                <div class ="panel-body"> 
+                                                                    <div class ="panel panel-info" style ="display:inline-block">
+                                                                        <div class ="panel-heading">Filter</div>
+                                                                             <div class="panel-body"> 
+                                                                                   <asp:RadioButtonList ID="rblSortTransactions" runat="server" AutoPostBack="False" Font-Names="Arial">
+                                                                                    <asp:ListItem>Sort By Quantity</asp:ListItem>
+                                                                                    <asp:ListItem>Sort By Product</asp:ListItem>
+                                                                                    <asp:ListItem>Sort by Transaction</asp:ListItem>
+                                                                                    </asp:RadioButtonList>
+                                                                                    <asp:Button ID="btFilterTransactions" runat="server" Text="Submit" />
+                                                                          </div>
+                                                                        </div> 
+                                                                    </div>
+                                           
+                                                        <div class ="panel-body" style ="display:inline-block">
+                                                          <table class ="auto-style2">
+                                          
+                                                                <asp:GridView ID="gvInventMng" runat="server" AutoPostBack = "True" BackColor ="White"  BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                                                    <FooterStyle BackColor="#CCCCCC" />
+                                                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                                                </asp:GridView>
+                                                          </table>
+                                                         </div>  
+                                                     </div>
+                                               </div> <!-- end demo 3 --> 
                                  <div class ="container, left"> 
                                         <div class="panel panel-primary" style ="display:inline-block">
                                             <div class="panel-heading"><h3 class ="panel-title">Product Data</h3></div>
@@ -510,49 +545,15 @@
                                                                 </div>
                                                               </div>
                                              </div> <!--end demo4 --> 
-                                                <div class ="container, left"> 
-                                                        <div class="panel panel-primary" style ="display:inline-block">
-                                                            <div class="panel-heading"><h3 class ="panel-title">Transaction Data</h3></div>
-                                                                <div class ="panel-body"> 
-                                                                    <div class ="panel panel-info" style ="display:inline-block">
-                                                                        <div class ="panel-heading">Filter</div>
-                                                                             <div class="panel-body"> 
-                                                                                   <asp:RadioButtonList ID="rblSortTransactions" runat="server" AutoPostBack="False" Font-Names="Arial">
-                                                                                    <asp:ListItem>Sort By Quantity</asp:ListItem>
-                                                                                    <asp:ListItem>Sort By Product</asp:ListItem>
-                                                                                    <asp:ListItem>Sort by Transaction</asp:ListItem>
-                                                                                    </asp:RadioButtonList>
-                                                                                    <asp:Button ID="btFilterTransactions" runat="server" Text="Submit" />
-                                                                          </div>
-                                                                        </div> 
-                                                                    </div>
-                                           
-                                                        <div class ="panel-body" style ="display:inline-block">
-                                                          <table class ="auto-style2">
-                                          
-                                                                <asp:GridView ID="gvInventMng" runat="server" AutoPostBack = "True" BackColor ="White"  BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
-                                                                    <AlternatingRowStyle BackColor="#CCCCCC" />
-                                                                    <FooterStyle BackColor="#CCCCCC" />
-                                                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                                                    <SortedAscendingHeaderStyle BackColor="#808080" />
-                                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                                                    <SortedDescendingHeaderStyle BackColor="#383838" />
-                                                                </asp:GridView>
-                                                          </table>
-                                                         </div>  
-                                                     </div>
-                                               </div> <!-- end demo 3 --> 
+
                 </div>
              
            </div>
          </div> <!-- .accordion-inner -->
        </div><!-- .accordion-body -->
     </div><!-- .accordion-group -->
-                       
-             <div id="my-accordion2" class="accordion, left" >
+</div>            
+          <div class="col-sm-2"> <div id="my-accordion2" class="accordion, left" >
                 <h3>Inventory Management</h3>
                     <div class="accordion-group">
                             <div class="accordion-heading">
@@ -603,7 +604,7 @@
                                                   </div>
                     </div>
                 </div>
-
+</div> 
          
 
                        
