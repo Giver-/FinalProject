@@ -8,8 +8,13 @@
     <style type="text/css">
         .auto-style1 {
             font-size: large;
+            font: Lato; 
             text-align: right; 
         }
+        h2, h3 { 
+            font-family: Lato; 
+        }
+        
         
         .left {
             position: relative;
@@ -54,24 +59,50 @@
             column-width: 200px; 
         }
        
+       html *
+    {
 
-       
+       font-family: Lato;
+    }   
+     
+    body {
+    margin-top: 25px;
+    font-size: 21px;
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+
+}
+        @-webkit-keyframes fadein {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+
+         }
     </style>
+
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
      <meta name="viewport" content="width=device-width, initial-scale=1" />
-     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato"/>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+  
+
 </head>
 <body>
     <form id="form1" runat="server">
-       
+      
             <asp:MultiView ID="MultiView1" runat="server">
+
                 <asp:View ID="View1" runat="server">
+                    <div class="jumbotron text-center" style ="background:#0094ff">
+                      <h1 style ="color:white">Welcome to Deadstock</h1>
+                      <p style="color:white"><i>Enterprise Operation Solution</i></p> 
+                    </div>
+
                     <span class="auto-style1"><strong>Home</strong></span><ul class="newStyle1"> 
-                        <li> <asp:LinkButton ID="LinkButton15" runat="server"><i class="fa fa-home"></i></asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton15" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton> </li>
                         <li><asp:LinkButton ID="LinkButton1" runat="server">Store</asp:LinkButton></li>         
                         <li> <asp:LinkButton ID="LinkButton3" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton13" runat="server">Rewards</asp:LinkButton></li>
@@ -93,7 +124,7 @@
                 <asp:View ID="View2" runat="server">
                     <span class="auto-style1"><strong>Store</strong></span>
                     <ul>
-                        <li><asp:LinkButton ID="LinkButton4" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton4" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton16" runat="server">Store</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton17" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton18" runat="server">Rewards</asp:LinkButton> </li>
@@ -213,7 +244,7 @@
                 </asp:View>
                 <asp:View ID="View3" runat="server">
                     <span class="auto-style1"><span class="auto-style2">&nbsp;Add Customer to Rewards Program</span></span><br />&nbsp;<ul>
-                        <li><asp:LinkButton ID="LinkButton6" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton6" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton5" runat="server">Store</asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton20" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton21" runat="server">Rewards</asp:LinkButton> </li>
@@ -292,7 +323,7 @@
                 <asp:View ID="View4" runat="server">
                     <span class="auto-style1">Customer Info</span><br />
                     <ul>
-                        <li><asp:LinkButton ID="LinkButton23" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton23" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton8" runat="server">Store</asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton24" runat="server">Manager Page</asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton7" runat="server">Rewards</asp:LinkButton></li>
@@ -379,7 +410,7 @@
                     
                     <span class="auto-style1"><strong>Manager</strong></span><br />
                     <ul>
-                        <li><asp:LinkButton ID="LinkButton9" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton9" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                     &nbsp;&nbsp;
                         <li><asp:LinkButton ID="LinkButton10" runat="server">Store</asp:LinkButton></li>
                     &nbsp;&nbsp;
