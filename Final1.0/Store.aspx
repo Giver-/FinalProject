@@ -85,6 +85,28 @@
         .auto-style4 {
             height: 46px;
         }
+        .auto-style5 {
+            width: 260px;
+        }
+        .auto-style6 {
+            height: 51px;
+            width: 353px;
+        }
+        .auto-style7 {
+            height: 46px;
+            width: 260px;
+        }
+        .auto-style9 {
+            height: 46px;
+            width: 353px;
+        }
+        .auto-style10 {
+            width: 353px;
+        }
+        .auto-style11 {
+            height: 29px;
+            width: 1543px;
+        }
     </style>
 
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -143,10 +165,10 @@
                     <br />
                     Lists of items with ddl lits (and pictures?)<br />
                     <br />
-                    <table class="auto-style2">
+                    <table class="auto-style11">
                         <tr>
                             <td class="auto-style21">Select Item(Fill from sql based off section selection)</td>
-                            <td>
+                            <td class="auto-style10">
                                 <asp:DropDownList ID="ddlShopSelect" runat="server" AutoPostBack="True">
                                 </asp:DropDownList>
                             </td>
@@ -154,7 +176,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style21">Item Picture(pull from ddl above)</td>
-                            <td>
+                            <td class="auto-style10">
                                 <asp:Image ID="iStorDDL" runat="server" Height="171px" Width="257px" />
                             </td>
                             <td class="auto-style11">&nbsp;</td>
@@ -163,7 +185,7 @@
                             <td class="auto-style22">
                                 <br />
                                 Select Quantity(just do a ddl up to 10 so the calculations are easier<br /> </td>
-                            <td class="auto-style8">
+                            <td class="auto-style10">
                                 <asp:DropDownList ID="ddlShopQuantity" runat="server" AutoPostBack="True">
                                     <asp:ListItem>Select Quantity</asp:ListItem>
                                     <asp:ListItem>1</asp:ListItem>
@@ -182,7 +204,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style27">Existing Rewards Member EnterID</td>
-                            <td class="auto-style9">
+                            <td class="auto-style10">
                                 <asp:TextBox ID="tbSaleRewards" runat="server"></asp:TextBox>
                                 <br />
                             </td>
@@ -206,38 +228,38 @@
                             <td class="auto-style3">
                                 <asp:Button ID="bViewCusRewards" runat="server" Text="View Customer Rewards" Width="236px" />
                             </td>
-                            <td class="auto-style3"></td>
+                            <td class="auto-style6"></td>
                             <td class="auto-style3"></td>
                         </tr>
                         <tr>
                             <td class="auto-style4">Use Rewards Points on purchase?</td>
-                            <td class="auto-style4">
+                            <td class="auto-style9">
                                 <asp:TextBox ID="tbUseRewards" runat="server"></asp:TextBox>
                             </td>
                             <td class="auto-style4">10 Reward Points is $1 off</td>
                         </tr>
                         <tr>
                             <td class="auto-style29">&nbsp;</td>
-                            <td class="auto-style16">&nbsp;</td>
+                            <td class="auto-style10">&nbsp;</td>
                             <td class="auto-style15">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style30">
                                 <asp:Button ID="bPurchaseItem" runat="server" Text="Purchase Items" Width="218px" />
                             </td>
-                            <td class="auto-style19"></td>
+                            <td class="auto-style10"></td>
                             <td class="auto-style20"></td>
                         </tr>
                         <tr>
                             <td class="auto-style30">Total Of purchase</td>
-                            <td class="auto-style19">
+                            <td class="auto-style10">
                                 <asp:TextBox ID="tbTransactionTotal" runat="server"></asp:TextBox>
                             </td>
                             <td class="auto-style20">&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style21">Add Customer to rewards Program</td>
-                            <td>
+                            <td class="auto-style10">
                                 <asp:LinkButton ID="LinkButton2" runat="server">Add Customer</asp:LinkButton>
                             </td>
                             <td class="auto-style11">&nbsp;</td>

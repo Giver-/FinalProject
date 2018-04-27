@@ -32,6 +32,7 @@ Partial Class Store
 
 #End Region
 
+    'Making Sale needs work
 #Region "Making A sale"
     Protected Sub bPurchaseItem_Click(sender As Object, e As EventArgs) Handles bPurchaseItem.Click
 
@@ -45,9 +46,34 @@ Partial Class Store
             .AddWithValue("@p4", tbSaleRewards.Text)
         End With
 
+        Dim updateCustomer As New SqlCommand("UPDATE pCustomers SET TotalOrders += 1, RewardPoints += 50 WHERE CustomerID = @p1", con)
+        Dim updateFavorites As New SqlCommand("UPDATE pFavorites SET TimesPurchased += @p2 WHERE ProductID = @p1", con)
+        Dim updateInventory As New SqlCommand("UPDATE pProducts SET ProductInventory -= @p2 WHERE ProductID = @p1", con)
+
+        With updateCustomer.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbSaleRewards.Text)
+        End With
+
+        With updateFavorites.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlShopSelect.SelectedIndex)
+            .AddWithValue("@p2", ddlShopQuantity.SelectedValue)
+        End With
+
+        With updateInventory.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlShopSelect.SelectedIndex)
+            .AddWithValue("@p2", ddlShopQuantity.SelectedValue)
+        End With
+
         Try
             If con.State = ConnectionState.Closed Then con.Open()
             cmdInsertProductSale.ExecuteNonQuery()
+            updateInventory.ExecuteNonQuery()
+            updateFavorites.ExecuteNonQuery()
+            updateCustomer.ExecuteNonQuery()
+
             Response.Write("Sale Completed")
         Catch ex As Exception
             Response.Write(ex.Message)
@@ -462,19 +488,13 @@ Partial Class Store
     'fill inventory form with selected item from DDL' 
     Protected Sub ddlInventoryFill_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlInventoryFill.SelectedIndexChanged
 
-
         Dim daGetOneCustomer As New SqlDataAdapter("Select * FROM pProducts Where ProductID = @p1", con)
-
-
         Dim dtOneCustomer As New DataTable
-
 
         With daGetOneCustomer.SelectCommand.Parameters
             .Clear()
             .AddWithValue("@p1", ddlInventoryFill.SelectedValue)
         End With
-
-
 
         Try
             daGetOneCustomer.Fill(dtOneCustomer)
@@ -490,7 +510,6 @@ Partial Class Store
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
-
 
     End Sub
 
