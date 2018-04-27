@@ -53,8 +53,8 @@ Partial Class ManagerLogin
             'next – success! If a user was found in the approved user table then go to another webpage
 
             If intRows = 1 Then
-                    Response.Redirect("Store.aspx")
-                    Exit Sub
+                Response.Redirect("Store.aspx?id=4")
+                Exit Sub
                 End If
 
             Catch ex As Exception

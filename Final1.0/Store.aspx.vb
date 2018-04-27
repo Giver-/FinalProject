@@ -5,6 +5,14 @@ Partial Class Store
 
     Public Shared con As New SqlConnection("Data Source=cb-ot-devst04.ad.wsu.edu;Initial Catalog=MF81ryan.j.griffin;Persist Security Info=True; User ID=ryan.j.griffin;Password=d3a8e399")
 
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Request.QueryString.HasKeys Then
+            MultiView1.ActiveViewIndex = 4
+        Else
+            MultiView1.ActiveViewIndex = 0
+        End If
+    End Sub
+
 
 
 #Region "Update and clear"
@@ -554,6 +562,7 @@ Partial Class Store
         End Sub
         Protected Sub LinkButton3_Click(sender As Object, e As EventArgs) Handles LinkButton3.Click
         Response.Redirect("ManagerLogin.aspx")
+
     End Sub
         Protected Sub LinkButton4_Click(sender As Object, e As EventArgs) Handles LinkButton4.Click
             MultiView1.ActiveViewIndex = 0
