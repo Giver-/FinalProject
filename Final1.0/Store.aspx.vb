@@ -16,6 +16,7 @@ Partial Class Store
         FillManagmentCustomers()
         FillTransactionTable()
         FillProductTable()
+        FillDdlInvMng()
         GetRecordsFavorties()
         GetRecordsCustomerInfo()
 
@@ -77,6 +78,28 @@ Partial Class Store
 
 #End Region
 
+#Region "Fill Inventory List on Manager Page"
+    Private Sub FillDdlInvMng()
+        Dim SelectProduct As New SqlDataAdapter("SELECT ProductID, ProductName FROM pProducts", con)
+        Dim dtProduct As New DataTable
+
+        Try
+            SelectProduct.Fill(dtProduct)
+
+            With ddlInventoryFill
+                .DataSource = dtProduct
+                .DataValueField = "ProductID"
+                .DataTextField = "ProductName"
+                .DataBind()
+                .Items.Insert(0, "Select Inventory to Edit")
+            End With
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+#End Region
 #Region "Store Customer Rewards and info pull"
     Protected Sub bViewCusRewards_Click(sender As Object, e As EventArgs) Handles bViewCusRewards.Click
 
@@ -412,7 +435,44 @@ Partial Class Store
     End Sub
 #End Region
 
-#Region "Add New Inventory Item"
+
+
+#Region "Adjust Inventory"
+    'fill inventory form with selected item from DDL' 
+    Protected Sub ddlInventoryFill_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlInventoryFill.SelectedIndexChanged
+
+
+        Dim daGetOneCustomer As New SqlDataAdapter("Select * FROM pProducts Where ProductID = @p1", con)
+
+
+        Dim dtOneCustomer As New DataTable
+
+
+        With daGetOneCustomer.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlInventoryFill.SelectedValue)
+        End With
+
+
+
+        Try
+            daGetOneCustomer.Fill(dtOneCustomer)
+
+            With dtOneCustomer.Rows(0)
+                tbProductID.Text = .Item("ProductID")
+                tbProductName.Text = .Item("ProductName")
+                tbProductPrice.Text = .Item("ProductPrice")
+                tbProductInventory.Text = .Item("ProductInventory")
+                tbProductSize.Text = .Item("ProductSize")
+            End With
+
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+
+
+    End Sub
+
     Protected Sub btAddInventory_Click(sender As Object, e As EventArgs) Handles btAddInventory.Click
 
         Dim cmdInsertNewInventory As New SqlCommand("INSERT pProducts (ProductID, ProductName, ProductPrice, ProductInventory, ProductSize) VALUES (@p1, @p2, @p3, @p4, @p5)", con)
@@ -437,6 +497,49 @@ Partial Class Store
             con.Close()
         End Try
     End Sub
+
+    Protected Sub btUpdateInventory_Click(sender As Object, e As EventArgs) Handles btUpdateInventory.Click
+        Dim UpdateCommand As New SqlCommand("Update pProducts SET ProductName = @p1, ProductPrice = @p2, ProductInventory= @p3, ProductSize = @p4 WHERE ProductID = @p5", con)
+
+        With UpdateCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbProductName.Text)
+            .AddWithValue("@p2", tbProductPrice.Text)
+            .AddWithValue("@p3", tbProductInventory.Text)
+            .AddWithValue("@p4", tbProductSize.Text)
+            .AddWithValue("@p5", ddlInventoryFill.SelectedValue)
+        End With
+
+        Try
+            If con.State = ConnectionState.Closed Then con.Open()
+            'here is where the insert command above in red is run
+            UpdateCommand.ExecuteNonQuery()
+
+            FillProductTable()
+            Response.Write("Record Updated")
+
+
+
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        Finally
+            con.Close()
+        End Try
+
+    End Sub
+
+
+    Protected Sub btInvMgmtClear_Click(sender As Object, e As EventArgs) Handles btInvMgmtClear.Click 'clear form' 
+
+        tbProductID.Text = Nothing
+        tbProductName.Text = Nothing
+        tbProductPrice.Text = Nothing
+        tbProductInventory.Text = Nothing
+        tbProductSize.Text = Nothing
+
+    End Sub
+
+
 #End Region
 
 
@@ -444,47 +547,81 @@ Partial Class Store
     'these are the links for the image buttons they look way better but are a pain since you need to add pictures Im just gping to use them as is without pictures for now and we can change that later
     'these are the link button links dont look that great but might be nice to have to navigate while we work on the site
     Protected Sub LinkButton1_Click(sender As Object, e As EventArgs) Handles LinkButton1.Click
-        MultiView1.ActiveViewIndex = 1
-    End Sub
-    Protected Sub LinkButton2_Click(sender As Object, e As EventArgs) Handles LinkButton2.Click
-        MultiView1.ActiveViewIndex = 2
-    End Sub
-    Protected Sub LinkButton3_Click(sender As Object, e As EventArgs) Handles LinkButton3.Click
-        MultiView1.ActiveViewIndex = 4
-    End Sub
-    Protected Sub LinkButton4_Click(sender As Object, e As EventArgs) Handles LinkButton4.Click
-        MultiView1.ActiveViewIndex = 0
-    End Sub
-    Protected Sub LinkButton5_Click(sender As Object, e As EventArgs) Handles LinkButton5.Click
-        MultiView1.ActiveViewIndex = 1
-    End Sub
-    Protected Sub LinkButton6_Click(sender As Object, e As EventArgs) Handles LinkButton6.Click
-        MultiView1.ActiveViewIndex = 3
-    End Sub
-    Protected Sub LinkButton7_Click(sender As Object, e As EventArgs) Handles LinkButton7.Click
-        MultiView1.ActiveViewIndex = 2
-    End Sub
-    Protected Sub LinkButton8_Click(sender As Object, e As EventArgs) Handles LinkButton8.Click
-        MultiView1.ActiveViewIndex = 1
-    End Sub
-    Protected Sub LinkButton9_Click(sender As Object, e As EventArgs) Handles LinkButton9.Click
-        MultiView1.ActiveViewIndex = 0
-    End Sub
-    Protected Sub LinkButton10_Click(sender As Object, e As EventArgs) Handles LinkButton10.Click
-        MultiView1.ActiveViewIndex = 1
-    End Sub
-    Protected Sub LinkButton11_Click(sender As Object, e As EventArgs) Handles LinkButton11.Click
-        MultiView1.ActiveViewIndex = 2
-    End Sub
-    Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
-        MultiView1.ActiveViewIndex = 3
-    End Sub
-    Protected Sub LinkButton13_Click(sender As Object, e As EventArgs) Handles LinkButton13.Click
-        MultiView1.ActiveViewIndex = 2
-    End Sub
+            MultiView1.ActiveViewIndex = 1
+        End Sub
+        Protected Sub LinkButton2_Click(sender As Object, e As EventArgs) Handles LinkButton2.Click
+            MultiView1.ActiveViewIndex = 2
+        End Sub
+        Protected Sub LinkButton3_Click(sender As Object, e As EventArgs) Handles LinkButton3.Click
+            MultiView1.ActiveViewIndex = 4
+        End Sub
+        Protected Sub LinkButton4_Click(sender As Object, e As EventArgs) Handles LinkButton4.Click
+            MultiView1.ActiveViewIndex = 0
+        End Sub
+        Protected Sub LinkButton5_Click(sender As Object, e As EventArgs) Handles LinkButton5.Click
+            MultiView1.ActiveViewIndex = 1
+        End Sub
+        Protected Sub LinkButton6_Click(sender As Object, e As EventArgs) Handles LinkButton6.Click
+            MultiView1.ActiveViewIndex = 3
+        End Sub
+        Protected Sub LinkButton7_Click(sender As Object, e As EventArgs) Handles LinkButton7.Click
+            MultiView1.ActiveViewIndex = 2
+        End Sub
+        Protected Sub LinkButton8_Click(sender As Object, e As EventArgs) Handles LinkButton8.Click
+            MultiView1.ActiveViewIndex = 1
+        End Sub
+        Protected Sub LinkButton9_Click(sender As Object, e As EventArgs) Handles LinkButton9.Click
+            MultiView1.ActiveViewIndex = 0
+        End Sub
+        Protected Sub LinkButton10_Click(sender As Object, e As EventArgs) Handles LinkButton10.Click
+            MultiView1.ActiveViewIndex = 1
+        End Sub
+        Protected Sub LinkButton11_Click(sender As Object, e As EventArgs) Handles LinkButton11.Click
+            MultiView1.ActiveViewIndex = 2
+        End Sub
+        Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
+            MultiView1.ActiveViewIndex = 3
+        End Sub
+        Protected Sub LinkButton13_Click(sender As Object, e As EventArgs) Handles LinkButton13.Click
+            MultiView1.ActiveViewIndex = 2
+        End Sub
     Protected Sub LinkButton14_Click(sender As Object, e As EventArgs) Handles LinkButton14.Click
         MultiView1.ActiveViewIndex = 3
     End Sub
+    Protected Sub LinkButton15_Click(sender As Object, e As EventArgs) Handles LinkButton15.Click
+        MultiView1.ActiveViewIndex = 0
+    End Sub
+    Protected Sub LinkButton16_Click(sender As Object, e As EventArgs) Handles LinkButton16.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
+    Protected Sub LinkButton17_Click(sender As Object, e As EventArgs) Handles LinkButton17.Click
+        MultiView1.ActiveViewIndex = 4
+    End Sub
+    Protected Sub LinkButton18_Click(sender As Object, e As EventArgs) Handles LinkButton18.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton19_Click(sender As Object, e As EventArgs) Handles LinkButton19.Click
+        MultiView1.ActiveViewIndex = 3
+    End Sub
+    Protected Sub LinkButton20_Click(sender As Object, e As EventArgs) Handles LinkButton20.Click
+        MultiView1.ActiveViewIndex = 4
+    End Sub
+    Protected Sub LinkButton21_Click(sender As Object, e As EventArgs) Handles LinkButton21.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton22_Click(sender As Object, e As EventArgs) Handles LinkButton22.Click
+        MultiView1.ActiveViewIndex = 3
+    End Sub
+    Protected Sub LinkButton23_Click(sender As Object, e As EventArgs) Handles LinkButton23.Click
+        MultiView1.ActiveViewIndex = 0
+    End Sub
+    Protected Sub LinkButton24_Click(sender As Object, e As EventArgs) Handles LinkButton24.Click
+        MultiView1.ActiveViewIndex = 4
+    End Sub
+    Protected Sub LinkButton26_Click(sender As Object, e As EventArgs) Handles LinkButton26.Click
+        MultiView1.ActiveViewIndex = 4
+    End Sub
+
 
 #End Region
 

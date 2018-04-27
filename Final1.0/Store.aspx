@@ -18,6 +18,7 @@
             padding: 10px;
         }
 
+
         .leftgrid {
             
             position: relative;
@@ -53,98 +54,14 @@
             column-width: 200px; 
         }
        
-        .auto-style2 {
-            font-weight: bold;
-        }
-        .auto-style5 {
-            height: 50px;
-        }
-        .auto-style7 {
-            height: 63px;
-        }
-        .auto-style8 {
-            height: 53px;
-        }
-        .auto-style9 {
-            height: 39px;
-        }
-        .auto-style11 {
-            width: 177px;
-        }
-        .auto-style12 {
-            height: 53px;
-            width: 177px;
-        }
-        .auto-style13 {
-            height: 39px;
-            width: 177px;
-        }
-        .auto-style14 {
-            height: 63px;
-            width: 177px;
-        }
-        .auto-style15 {
-            height: 59px;
-            width: 177px;
-        }
-        .auto-style16 {
-            height: 59px;
-        }
-        .auto-style18 {
-            width: 177px;
-            height: 28px;
-        }
-        .auto-style19 {
-            height: 54px;
-        }
-        .auto-style20 {
-            width: 177px;
-            height: 54px;
-        }
-        .auto-style21 {
-            height: 28px;
-            width: 485px;
-        }
-        .auto-style22 {
-            height: 53px;
-            width: 485px;
-        }
-        .auto-style23 {
-            height: 39px;
-            width: 470px;
-        }
-        .auto-style24 {
-            height: 63px;
-            width: 470px;
-        }
-        .auto-style25 {
-            height: 59px;
-            width: 470px;
-        }
-        .auto-style26 {
-            height: 54px;
-            width: 470px;
-        }
-        .auto-style27 {
-            height: 39px;
-            width: 485px;
-        }
-        .auto-style28 {
-            height: 63px;
-            width: 485px;
-        }
-        .auto-style29 {
-            height: 59px;
-            width: 485px;
-        }
-        .auto-style30 {
-            height: 54px;
-            width: 485px;
-        }
+
        
     </style>
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -154,8 +71,8 @@
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="View1" runat="server">
                     <span class="auto-style1"><strong>Home</strong></span><ul class="newStyle1"> 
-                        <li><asp:LinkButton ID="LinkButton1" runat="server">Store</asp:LinkButton></li>
-                        &nbsp;&nbsp;
+                        <li> <asp:LinkButton ID="LinkButton15" runat="server"><i class="fa fa-home"></i></asp:LinkButton> </li>
+                        <li><asp:LinkButton ID="LinkButton1" runat="server">Store</asp:LinkButton></li>         
                         <li> <asp:LinkButton ID="LinkButton3" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton13" runat="server">Rewards</asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton14" runat="server">Checkout</asp:LinkButton></li>
@@ -176,9 +93,12 @@
                 <asp:View ID="View2" runat="server">
                     <span class="auto-style1"><strong>Store</strong></span>
                     <ul>
-                        <li>
-                            <asp:LinkButton ID="LinkButton4" runat="server">Home</asp:LinkButton>
-                        </li>
+                        <li><asp:LinkButton ID="LinkButton4" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
+                        <li> <asp:LinkButton ID="LinkButton16" runat="server">Store</asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton17" runat="server">Manager Page</asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton18" runat="server">Rewards</asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton19" runat="server">Checkout</asp:LinkButton> </li>
+
                     </ul>
                     <br />
                     <br />
@@ -293,13 +213,11 @@
                 </asp:View>
                 <asp:View ID="View3" runat="server">
                     <span class="auto-style1"><span class="auto-style2">&nbsp;Add Customer to Rewards Program</span></span><br />&nbsp;<ul>
-                        <li>
-                            <asp:LinkButton ID="LinkButton5" runat="server">Store</asp:LinkButton>
-                        </li>
-                        &nbsp;&nbsp;
-                        <li>
-                            <asp:LinkButton ID="LinkButton6" runat="server">Checkout</asp:LinkButton>
-                        </li>
+                        <li><asp:LinkButton ID="LinkButton6" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton5" runat="server">Store</asp:LinkButton></li>
+                        <li> <asp:LinkButton ID="LinkButton20" runat="server">Manager Page</asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton21" runat="server">Rewards</asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton22" runat="server">Checkout</asp:LinkButton> </li>
                     </ul>
                     &nbsp;<br />
                     <br />
@@ -374,13 +292,11 @@
                 <asp:View ID="View4" runat="server">
                     <span class="auto-style1">Customer Info</span><br />
                     <ul>
-                        <li>
-                            <asp:LinkButton ID="LinkButton7" runat="server">Rewards</asp:LinkButton>
-                        </li>
-                        &nbsp;&nbsp;&nbsp;
-                        <li>
-                            <asp:LinkButton ID="LinkButton8" runat="server">Store</asp:LinkButton>
-                        </li>
+                        <li><asp:LinkButton ID="LinkButton23" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton8" runat="server">Store</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton24" runat="server">Manager Page</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton7" runat="server">Rewards</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton25" runat="server">Checkout</asp:LinkButton></li>
                     </ul>
                     <br />
                     <br />
@@ -463,31 +379,26 @@
                     
                     <span class="auto-style1"><strong>Manager</strong></span><br />
                     <ul>
-                        <li><asp:LinkButton ID="LinkButton9" runat="server">Home</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton9" runat="server"><i class="fa fa-home"></i></asp:LinkButton></li>
                     &nbsp;&nbsp;
                         <li><asp:LinkButton ID="LinkButton10" runat="server">Store</asp:LinkButton></li>
                     &nbsp;&nbsp;
+                        <li><asp:LinkButton ID="LinkButton26" runat="server">Manager Page</asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton11" runat="server">Rewards</asp:LinkButton></li>
                     &nbsp;&nbsp;&nbsp;
                         <li><asp:LinkButton ID="LinkButton12" runat="server">Checkout</asp:LinkButton></li>
                     </ul>
 
-                    <br />
-                    <br />
-                    Shows Favortie items, stock, best customers, total revenue, item revenue
-                         
-                              
-                          
-                    <br />
-                    <br />
 
-               
+                    <!----Shows Favortie items, stock, best customers, total revenue, item revenue -->
+                         
+
 
  <div id="my-accordion" class="accordion, left">
     <h3>Store Data</h3>
     <div class="accordion-group">
         <div class="accordion-heading">
-            <a href="#collapse-year-2012" data-parent="#my-accordion" data-toggle="collapse" class="accordion-toggle btn btn-info">Hide/Show Store Data</a>
+            <a href="#collapse-year-2012" data-parent="#my-accordion" data-toggle="collapse" class="accordion-toggle btn btn-info">Hide/Show</a>
         </div>
        <div class="accordion-body collapse in" id="collapse-year-2012">
             <div class ="accordion-inner"> 
@@ -566,7 +477,7 @@
                 
                                                                      </table>
                                                                 </div>
-                                                          </div>  
+                                                              </div>
                                              </div> <!--end demo4 --> 
                                                 <div class ="container, left"> 
                                                         <div class="panel panel-primary" style ="display:inline-block">
@@ -609,51 +520,72 @@
          </div> <!-- .accordion-inner -->
        </div><!-- .accordion-body -->
     </div><!-- .accordion-group -->
-
-                    <div class="container, left" data-parent ="accordion2">
-                        <h3>Add New Inventory</h3>
-          
-                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Hide/ Show Add Inventory Form</button>
-                        <div id="demo" class="collapse">
-                        <p></p>
-                        <p>Product ID</p>
-                        <asp:TextBox ID="tbProductID" runat="server"></asp:TextBox>
-                        <p></p>
-                        <p>Product Name</p>
-                           
-                        <asp:TextBox ID="tbProductName" runat="server"></asp:TextBox>
-                        <p></p>
-                        <p> Product Price</p>
-
-                        <asp:TextBox ID="tbProductPrice" runat="server"></asp:TextBox>
-                        <p></p>
-                        <p>Product Quantity</p>
- 
-                        <asp:TextBox ID="tbProductInventory" runat="server"></asp:TextBox>
-                        <p></p>
-                        <p>Product Size</p>
-
-                        <asp:TextBox ID="tbProductSize" runat="server"></asp:TextBox>
-                        <p> </p>
-                        <asp:Button ID="btAddInventory" runat="server" Text="Enter Item" Width="116px" />
                        
+             <div id="my-accordion2" class="accordion, left" >
+                <h3>Inventory Management</h3>
+                    <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a href="#collapse-year-2013" data-parent="#my-accordion2" data-toggle="collapse" class="accordion-toggle btn btn-info">Hide/Show</a>
+                                            </div>
+                                                <div class="accordion-body collapse in" id="collapse-year-2013">
+                                                        <div class ="accordion-inner, left">
+                                                            <div class="container, left"> </div>
+                                                                <div class ="panel panel-primary" style="display:inline-block">
+                                                                    <div class="panel-heading"><h3 class="panel-title">Inventory Update and Add</h3></div>
+                                                                        <div class="panel-body"> 
+
+                                                                    <div>
+                                                                        <p></p>
+                                                                         <asp:DropDownList ID="ddlInventoryFill" runat="server" AutoPostBack="True">
+                                                                         </asp:DropDownList>
+                                                                        <p></p>
+                                                                        <p>Product ID</p>
+                                                                        <asp:TextBox ID="tbProductID" runat="server"></asp:TextBox>
+                                                                        <p></p>
+                                                                        <p>Product Name</p>
+                           
+                                                                        <asp:TextBox ID="tbProductName" runat="server"></asp:TextBox>
+                                                                        <p></p>
+                                                                        <p> Product Price</p>
+
+                                                                        <asp:TextBox ID="tbProductPrice" runat="server"></asp:TextBox>
+                                                                        <p></p>
+                                                                        <p>Product Quantity</p>
+ 
+                                                                        <asp:TextBox ID="tbProductInventory" runat="server"></asp:TextBox>
+                                                                        <p></p>
+                                                                        <p>Product Size</p>
+
+                                                                        <asp:TextBox ID="tbProductSize" runat="server"></asp:TextBox>
+                                                                        <p> </p>
+                                                                        <asp:Button ID="btAddInventory" runat="server" Text="Add New" Width="116px" />
+                                                                        <p></p>
+                                                                        <asp:Button ID="btUpdateInventory" runat="server" Text="Update" Width="116px" />
+                                                                        <p></p>
+                                                                        <asp:Button ID="btInvMgmtClear" runat="server" Text="Clear" Width="116px" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                              
+                                                          </div>
+                                                  </div>
                     </div>
                 </div>
-                    <br />
+
+         
 
                        
 
  <script>
      jQuery('Store.aspx').ready(function() {
-        jQuery('#my-accordion').on('show hide', function() {
+        jQuery('#my-accordion, #my-accordion2').on('show hide', function() {
             jQuery(this).css('height', 'auto');
         });
-        Query('#my-accordion').collapse({ parent: true, toggle: true }); 
+        Query('#my-accordion, #my-accordion2').collapse({ parent: true, toggle: true }); 
         });
 
-
-
- </script>
+</script> 
 
 
 
@@ -667,21 +599,7 @@
                        
               </asp:View>
     </asp:MultiView>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+
        
     </form>
 </body>
