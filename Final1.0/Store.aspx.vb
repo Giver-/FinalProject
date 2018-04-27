@@ -1,15 +1,22 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
+
 Partial Class Store
     Inherits System.Web.UI.Page
 
     Public Shared con As New SqlConnection("Data Source=cb-ot-devst04.ad.wsu.edu;Initial Catalog=MF81ryan.j.griffin;Persist Security Info=True; User ID=ryan.j.griffin;Password=d3a8e399")
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Request.QueryString.HasKeys Then
-            MultiView1.ActiveViewIndex = 4
-        Else
-            MultiView1.ActiveViewIndex = 0
+
+
+        If Request.UrlReferrer IsNot Nothing Then
+            Dim previousPageUrl As String = Request.UrlReferrer.AbsoluteUri
+            Dim previousPageName As String = System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath)
+            Dim managePage As String = "ManagerLogin.aspx"
+            If managePage = previousPageName Then
+                MultiView1.ActiveViewIndex = 4
+                previousPageName = Nothing
+            End If
         End If
     End Sub
 
