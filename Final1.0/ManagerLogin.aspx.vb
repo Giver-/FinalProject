@@ -52,7 +52,7 @@ Partial Class ManagerLogin
 
 
             If intRows = 1 Then
-                Response.Redirect("Store.aspx?id=4")
+                Response.Redirect("Store.aspx")
                 Exit Sub
             End If
 
