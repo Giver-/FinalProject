@@ -41,7 +41,7 @@ Partial Class Store
         Try
             If con.State = ConnectionState.Closed Then con.Open()
             cmdInsertProductToCart.ExecuteNonQuery()
-            GetRecordsNT()
+
             Response.Write("Item Added to cart")
         Catch ex As Exception
             Response.Write(ex.Message)
