@@ -1,26 +1,9 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
-
 Partial Class Store
     Inherits System.Web.UI.Page
 
     Public Shared con As New SqlConnection("Data Source=cb-ot-devst04.ad.wsu.edu;Initial Catalog=MF81ryan.j.griffin;Persist Security Info=True; User ID=ryan.j.griffin;Password=d3a8e399")
-
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-
-        If Request.UrlReferrer IsNot Nothing Then
-            Dim previousPageUrl As String = Request.UrlReferrer.AbsoluteUri
-            Dim previousPageName As String = System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath)
-            Dim managePage As String = "ManagerLogin.aspx"
-            If managePage = previousPageName Then
-                MultiView1.ActiveViewIndex = 4
-                previousPageName = Nothing
-            End If
-        End If
-    End Sub
-
-
 
 #Region "Update and clear"
     Private Sub Store_Init(sender As Object, e As EventArgs) Handles Me.Init
@@ -35,30 +18,37 @@ Partial Class Store
         GetRecordsFavorties()
         GetRecordsCustomerInfo()
 
-
-
         MaintainScrollPositionOnPostBack = True
 
     End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Request.QueryString.HasKeys Then
+            MultiView1.ActiveViewIndex = 4
+        Else
+            MultiView1.ActiveViewIndex = 0
+        End If
+    End Sub
+
 #End Region
 
-#Region "New Order"
-    Protected Sub bAddToCart_Click(sender As Object, e As EventArgs) Handles bAddToCart.Click
+#Region "Making A sale"
+    Protected Sub bPurchaseItem_Click(sender As Object, e As EventArgs) Handles bPurchaseItem.Click
 
-        Dim cmdInsertProductToCart As New SqlCommand("INSERT pTransactionHistory (ProductID, ProductName, Quantity) VALUES (@p1, @p2, @p3)", con)
+        Dim cmdInsertProductSale As New SqlCommand("INSERT pTransactionHistory (ProductID, ProductName, Quantity, CustomerID) VALUES (@p1, @p2, @p3, @p4)", con)
 
-        With cmdInsertProductToCart.Parameters
+        With cmdInsertProductSale.Parameters
             .Clear()
             .AddWithValue("@p1", ddlShopSelect.SelectedIndex)
             .AddWithValue("@p2", ddlShopSelect.SelectedItem.Text)
             .AddWithValue("@p3", ddlShopQuantity.SelectedValue)
+            .AddWithValue("@p4", tbSaleRewards.Text)
         End With
 
         Try
             If con.State = ConnectionState.Closed Then con.Open()
-            cmdInsertProductToCart.ExecuteNonQuery()
-
-            Response.Write("Item Added to cart")
+            cmdInsertProductSale.ExecuteNonQuery()
+            Response.Write("Sale Completed")
         Catch ex As Exception
             Response.Write(ex.Message)
         Finally
@@ -115,11 +105,31 @@ Partial Class Store
         End Try
     End Sub
 #End Region
+
 #Region "Store Customer Rewards and info pull"
     Protected Sub bViewCusRewards_Click(sender As Object, e As EventArgs) Handles bViewCusRewards.Click
 
-    End Sub
+        Dim RecordsRewards As New SqlDataAdapter("SELECT * FROM pCustomers WHERE CustomerID = @p1", con)
+        Dim dtRecordsRewards As New DataTable
 
+
+        With RecordsRewards.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbSaleRewards.Text)
+        End With
+
+        If dtRecordsRewards.Rows.Count > 0 Then
+            dtRecordsRewards.Rows.Clear()
+        End If
+
+        Try
+            RecordsRewards.Fill(dtRecordsRewards)
+            gvCustomerInStore.DataSource = dtRecordsRewards
+            gvCustomerInStore.DataBind()
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+    End Sub
 
 #End Region
 
@@ -190,7 +200,6 @@ Partial Class Store
         End Try
     End Sub
 #End Region
-
     'Managment Area
 #Region "Mangment Info Fill grid views"
     Private Sub FillManagmentCustomers()
@@ -412,7 +421,6 @@ Partial Class Store
         'select case to provide different sorting functions depending on selected radiobuttonlist selection 
 
 
-
         Select Case rblSortTransactions.SelectedIndex
             Case 0
                 OrderByQuantity()
@@ -449,8 +457,6 @@ Partial Class Store
         End Select
     End Sub
 #End Region
-
-
 
 #Region "Adjust Inventory"
     'fill inventory form with selected item from DDL' 
@@ -556,7 +562,6 @@ Partial Class Store
 
 
 #End Region
-
 
 #Region "Page Links"
     'these are the links for the image buttons they look way better but are a pain since you need to add pictures Im just gping to use them as is without pictures for now and we can change that later

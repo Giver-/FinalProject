@@ -76,6 +76,15 @@
             to   { opacity: 1; }
 
          }
+        .auto-style2 {
+            height: 29px;
+        }
+        .auto-style3 {
+            height: 51px;
+        }
+        .auto-style4 {
+            height: 46px;
+        }
     </style>
 
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -194,18 +203,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style28">
+                            <td class="auto-style3">
                                 <asp:Button ID="bViewCusRewards" runat="server" Text="View Customer Rewards" Width="236px" />
                             </td>
-                            <td class="auto-style7"></td>
-                            <td class="auto-style14">&nbsp;</td>
+                            <td class="auto-style3"></td>
+                            <td class="auto-style3"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style29">Use Rewards Points on purchase?</td>
-                            <td class="auto-style16">
+                            <td class="auto-style4">Use Rewards Points on purchase?</td>
+                            <td class="auto-style4">
                                 <asp:TextBox ID="tbUseRewards" runat="server"></asp:TextBox>
                             </td>
-                            <td class="auto-style15">10 Reward Points is $1 off</td>
+                            <td class="auto-style4">10 Reward Points is $1 off</td>
                         </tr>
                         <tr>
                             <td class="auto-style29">&nbsp;</td>
@@ -214,7 +223,7 @@
                         </tr>
                         <tr>
                             <td class="auto-style30">
-                                <asp:Button ID="bAddToCart" runat="server" Text="Purchase Items" Width="218px" />
+                                <asp:Button ID="bPurchaseItem" runat="server" Text="Purchase Items" Width="218px" />
                             </td>
                             <td class="auto-style19"></td>
                             <td class="auto-style20"></td>
