@@ -553,8 +553,8 @@ Partial Class Store
             MultiView1.ActiveViewIndex = 2
         End Sub
         Protected Sub LinkButton3_Click(sender As Object, e As EventArgs) Handles LinkButton3.Click
-            MultiView1.ActiveViewIndex = 4
-        End Sub
+        Response.Redirect("ManagerLogin.aspx")
+    End Sub
         Protected Sub LinkButton4_Click(sender As Object, e As EventArgs) Handles LinkButton4.Click
             MultiView1.ActiveViewIndex = 0
         End Sub
