@@ -15,8 +15,6 @@ Partial Class Store
         FillTransactionTable()
         FillProductTable()
         FillDdlInvMng()
-        GetRecordsFavorties()
-        GetRecordsCustomerInfo()
 
         MaintainScrollPositionOnPostBack = True
 
@@ -191,40 +189,48 @@ Partial Class Store
 
 #End Region
 
-#Region "Fill Customer Info GridViews"
-    Private Sub GetRecordsFavorties()
-        Dim RecordsFavorite As New SqlDataAdapter("SELECT * FROM pFavorites", con)
-        Dim RecordFavoriteItems As New DataTable
+#Region "Check Customer Rewards"
+    Protected Sub bGetReward_Click(sender As Object, e As EventArgs) Handles bGetReward.Click
 
-        If RecordFavoriteItems.Rows.Count > 0 Then
-            RecordFavoriteItems.Rows.Clear()
+        Dim RecordsRewards As New SqlDataAdapter("SELECT * FROM pCustomers WHERE CustomerID = @p1", con)
+        Dim dtRecordsRewards As New DataTable
+
+        Dim RecordsFavs As New SqlDataAdapter("SELECT * FROM pFavorites WHERE CustomerID = @p1", con)
+        Dim dtRecordsFavs As New DataTable
+
+        With RecordsRewards.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbCustomerIDRewards.Text)
+        End With
+
+        With RecordsFavs.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbCustomerIDRewards.Text)
+        End With
+
+
+        If dtRecordsRewards.Rows.Count > 0 Then
+            dtRecordsRewards.Rows.Clear()
+        End If
+
+        If dtRecordsFavs.Rows.Count > 0 Then
+            dtRecordsFavs.Rows.Clear()
         End If
 
         Try
-            RecordsFavorite.Fill(RecordFavoriteItems)
-            gvRewardFav.DataSource = RecordFavoriteItems
-            gvRewardFav.DataBind()
-        Catch ex As Exception
-            Response.Write(ex.Message)
-        End Try
-    End Sub
-
-    Private Sub GetRecordsCustomerInfo()
-        Dim RecordsCustomerInfo As New SqlDataAdapter("SELECT * FROM pCustomers", con)
-        Dim RecordCustomerProproties As New DataTable
-
-        If RecordCustomerProproties.Rows.Count > 0 Then
-            RecordCustomerProproties.Rows.Clear()
-        End If
-
-        Try
-            RecordsCustomerInfo.Fill(RecordCustomerProproties)
-            gvRewardCustomer.DataSource = RecordCustomerProproties
+            RecordsRewards.Fill(dtRecordsRewards)
+            gvRewardCustomer.DataSource = dtRecordsRewards
             gvRewardCustomer.DataBind()
+
+            RecordsFavs.Fill(dtRecordsFavs)
+            gvRewardFav.DataSource = dtRecordsFavs
+            gvRewardFav.DataBind()
+
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
     End Sub
+
 #End Region
     'Managment Area
 #Region "Mangment Info Fill grid views"
@@ -664,7 +670,5 @@ Partial Class Store
 
 
 #End Region
-
-
 
 End Class
