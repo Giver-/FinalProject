@@ -27,50 +27,89 @@ Partial Class Store
 #Region "Update and clear"
     Private Sub Store_Init(sender As Object, e As EventArgs) Handles Me.Init
 
-        MultiView1.ActiveViewIndex = 0
         FILLDDLProductsList()
-
         FillManagmentCustomers()
         FillTransactionTable()
         FillProductTable()
         FillDdlInvMng()
-        GetRecordsFavorties()
-        GetRecordsCustomerInfo()
+
+        MultiView1.ActiveViewIndex = 0
 
         MaintainScrollPositionOnPostBack = True
 
     End Sub
 
 #End Region
-
+    'Making Sale needs work
 #Region "Making A sale"
     Protected Sub bPurchaseItem_Click(sender As Object, e As EventArgs) Handles bPurchaseItem.Click
 
         Dim cmdInsertProductSale As New SqlCommand("INSERT pTransactionHistory (ProductID, ProductName, Quantity, CustomerID) VALUES (@p1, @p2, @p3, @p4)", con)
 
+        Dim decRewardCalc As New Decimal
+
         With cmdInsertProductSale.Parameters
             .Clear()
-            .AddWithValue("@p1", ddlShopSelect.SelectedIndex)
+            .AddWithValue("@p1", ddlShopSelect.SelectedValue)
             .AddWithValue("@p2", ddlShopSelect.SelectedItem.Text)
             .AddWithValue("@p3", ddlShopQuantity.SelectedValue)
             .AddWithValue("@p4", tbSaleRewards.Text)
         End With
 
+        Dim updateCustomer As New SqlCommand("UPDATE pCustomers SET TotalOrders += 1, RewardPoints += @p2 WHERE CustomerID = @p1", con)
+        Dim updateFavorites As New SqlCommand("UPDATE pFavorites SET TimesPurchased += @p2 WHERE ProductID = @p1", con)
+        Dim updateInventory As New SqlCommand("UPDATE pProducts SET ProductInventory -= @p2 WHERE ProductID = @p1", con)
+
+        PurchasePrice *= ddlShopQuantity.SelectedValue
+
+        If IsNumeric(tbUseRewards.Text) = True Then
+
+            PurchasePrice -= (CDec(tbUseRewards.Text) / 10)
+            decRewardCalc -= CDec(tbUseRewards.Text)
+            decRewardCalc += (PurchasePrice / 5)
+
+        Else
+            decRewardCalc = (PurchasePrice / 5)
+        End If
+
+        With updateCustomer.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbSaleRewards.Text)
+            .AddWithValue("@p2", decRewardCalc)
+        End With
+
+        With updateFavorites.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlShopSelect.SelectedValue)
+            .AddWithValue("@p2", ddlShopQuantity.SelectedValue)
+        End With
+
+        With updateInventory.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlShopSelect.SelectedValue)
+            .AddWithValue("@p2", ddlShopQuantity.SelectedValue)
+        End With
+
         Try
             If con.State = ConnectionState.Closed Then con.Open()
             cmdInsertProductSale.ExecuteNonQuery()
+            updateInventory.ExecuteNonQuery()
+            updateFavorites.ExecuteNonQuery()
+            updateCustomer.ExecuteNonQuery()
+
             Response.Write("Sale Completed")
         Catch ex As Exception
             Response.Write(ex.Message)
         Finally
             con.Close()
         End Try
-
+        tbTransactionTotal.Text = PurchasePrice
     End Sub
 
 #End Region
 
 #Region "Fill Product list DDL"
+    Public Shared PurchasePrice As Decimal
     Private Sub FILLDDLProductsList()
         Dim SelectProduct As New SqlDataAdapter("SELECT ProductID, ProductName FROM pProducts", con)
         Dim dtProduct As New DataTable
@@ -79,6 +118,7 @@ Partial Class Store
             SelectProduct.Fill(dtProduct)
 
             With ddlShopSelect
+
                 .DataSource = dtProduct
                 .DataValueField = "ProductID"
                 .DataTextField = "ProductName"
@@ -90,6 +130,30 @@ Partial Class Store
         Finally
             con.Close()
         End Try
+    End Sub
+
+    Protected Sub ddlShopSelect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlShopSelect.SelectedIndexChanged
+
+        Dim daGetSawyer As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductID = @p1", con)
+        Dim dtOneSawyer As New DataTable
+
+        With daGetSawyer.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlShopSelect.SelectedValue)
+        End With
+
+        Try
+            daGetSawyer.Fill(dtOneSawyer)
+
+            With dtOneSawyer.Rows(0)
+
+                PurchasePrice = .Item("ProductPrice")
+
+            End With
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
+
     End Sub
 
 #End Region
@@ -145,7 +209,6 @@ Partial Class Store
 #End Region
 
 #Region "Add new customer"
-
     Protected Sub bAddCustomer_Click(sender As Object, e As EventArgs) Handles bAddCustomer.Click
 
         Dim cmdInsertNewCustomer As New SqlCommand("INSERT pCustomers (Name, Email, Address, City, State, Zip, CardNumber) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7)", con)
@@ -176,40 +239,48 @@ Partial Class Store
 
 #End Region
 
-#Region "Fill Customer Info GridViews"
-    Private Sub GetRecordsFavorties()
-        Dim RecordsFavorite As New SqlDataAdapter("SELECT * FROM pFavorites", con)
-        Dim RecordFavoriteItems As New DataTable
+#Region "Check Customer Rewards"
+    Protected Sub bGetReward_Click(sender As Object, e As EventArgs) Handles bGetReward.Click
 
-        If RecordFavoriteItems.Rows.Count > 0 Then
-            RecordFavoriteItems.Rows.Clear()
+        Dim RecordsRewards As New SqlDataAdapter("SELECT * FROM pCustomers WHERE CustomerID = @p1", con)
+        Dim dtRecordsRewards As New DataTable
+
+        Dim RecordsFavs As New SqlDataAdapter("SELECT * FROM pFavorites WHERE CustomerID = @p1", con)
+        Dim dtRecordsFavs As New DataTable
+
+        With RecordsRewards.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbCustomerIDRewards.Text)
+        End With
+
+        With RecordsFavs.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", tbCustomerIDRewards.Text)
+        End With
+
+
+        If dtRecordsRewards.Rows.Count > 0 Then
+            dtRecordsRewards.Rows.Clear()
+        End If
+
+        If dtRecordsFavs.Rows.Count > 0 Then
+            dtRecordsFavs.Rows.Clear()
         End If
 
         Try
-            RecordsFavorite.Fill(RecordFavoriteItems)
-            gvRewardFav.DataSource = RecordFavoriteItems
-            gvRewardFav.DataBind()
-        Catch ex As Exception
-            Response.Write(ex.Message)
-        End Try
-    End Sub
-
-    Private Sub GetRecordsCustomerInfo()
-        Dim RecordsCustomerInfo As New SqlDataAdapter("SELECT * FROM pCustomers", con)
-        Dim RecordCustomerProproties As New DataTable
-
-        If RecordCustomerProproties.Rows.Count > 0 Then
-            RecordCustomerProproties.Rows.Clear()
-        End If
-
-        Try
-            RecordsCustomerInfo.Fill(RecordCustomerProproties)
-            gvRewardCustomer.DataSource = RecordCustomerProproties
+            RecordsRewards.Fill(dtRecordsRewards)
+            gvRewardCustomer.DataSource = dtRecordsRewards
             gvRewardCustomer.DataBind()
+
+            RecordsFavs.Fill(dtRecordsFavs)
+            gvRewardFav.DataSource = dtRecordsFavs
+            gvRewardFav.DataBind()
+
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
     End Sub
+
 #End Region
     'Managment Area
 #Region "Mangment Info Fill grid views"
@@ -430,8 +501,6 @@ Partial Class Store
 #Region "Radio Button Select Cases Processes"
     Protected Sub btFilterTransactions_Click(sender As Object, e As EventArgs) Handles btFilterTransactions.Click
         'select case to provide different sorting functions depending on selected radiobuttonlist selection 
-
-
         Select Case rblSortTransactions.SelectedIndex
             Case 0
                 OrderByQuantity()
@@ -473,19 +542,13 @@ Partial Class Store
     'fill inventory form with selected item from DDL' 
     Protected Sub ddlInventoryFill_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlInventoryFill.SelectedIndexChanged
 
-
         Dim daGetOneCustomer As New SqlDataAdapter("Select * FROM pProducts Where ProductID = @p1", con)
-
-
         Dim dtOneCustomer As New DataTable
-
 
         With daGetOneCustomer.SelectCommand.Parameters
             .Clear()
             .AddWithValue("@p1", ddlInventoryFill.SelectedValue)
         End With
-
-
 
         Try
             daGetOneCustomer.Fill(dtOneCustomer)
@@ -503,7 +566,6 @@ Partial Class Store
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
-
 
     End Sub
 
@@ -553,8 +615,6 @@ Partial Class Store
             FillProductTable()
             Response.Write("Record Updated")
 
-
-
         Catch ex As Exception
             Response.Write(ex.Message)
         Finally
@@ -562,7 +622,6 @@ Partial Class Store
         End Try
 
     End Sub
-
 
     Protected Sub btInvMgmtClear_Click(sender As Object, e As EventArgs) Handles btInvMgmtClear.Click 'clear form' 
 
@@ -573,13 +632,9 @@ Partial Class Store
         tbProductSize.Text = Nothing
 
     End Sub
-
-
 #End Region
 
 #Region "Page Links"
-    'these are the links for the image buttons they look way better but are a pain since you need to add pictures Im just gping to use them as is without pictures for now and we can change that later
-    'these are the link button links dont look that great but might be nice to have to navigate while we work on the site
     Protected Sub LinkButton1_Click(sender As Object, e As EventArgs) Handles LinkButton1.Click
             MultiView1.ActiveViewIndex = 1
         End Sub
@@ -588,7 +643,6 @@ Partial Class Store
         End Sub
         Protected Sub LinkButton3_Click(sender As Object, e As EventArgs) Handles LinkButton3.Click
         Response.Redirect("ManagerLogin.aspx")
-
     End Sub
         Protected Sub LinkButton4_Click(sender As Object, e As EventArgs) Handles LinkButton4.Click
             MultiView1.ActiveViewIndex = 0
@@ -656,10 +710,6 @@ Partial Class Store
     Protected Sub LinkButton26_Click(sender As Object, e As EventArgs) Handles LinkButton26.Click
         Response.Redirect("ManagerLogin.aspx")
     End Sub
-
-
 #End Region
-
-
 
 End Class
