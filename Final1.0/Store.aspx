@@ -22,6 +22,12 @@
             width: 300px;
             padding: 10px;
         }
+                .center {
+            margin: inherit; 
+            text-align: center;
+            width: 300px;
+             
+}   
 
 
         .leftgrid {
@@ -30,7 +36,10 @@
             left: 20px;
             padding: 10px;
         }
-
+        .hometext {
+            color: white; 
+            
+        }
  
         ul { 
             list-style-type: none;
@@ -58,6 +67,13 @@
         .columnwidth{ 
             column-width: 200px; 
         }
+        .panelstyle { 
+            width: 500px;
+            height: 125px; 
+            padding: 20px; 
+            background-color: lightblue; 
+        }
+
        
        html *
     {
@@ -85,6 +101,18 @@
         .auto-style4 {
             height: 46px;
         }
+        .glyphicon.glyphicon-shopping-cart {
+            font-size: 50px;
+            color: white; 
+}
+        .glyphicon.glyphicon-user {
+            font-size: 50px;
+            color: white; 
+} {
+            font-size: 50px;
+            color: white; 
+}
+ 
     </style>
 
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -98,6 +126,7 @@
   
 
 </head>
+  
 <body>
     <form id="form1" runat="server">
       
@@ -109,25 +138,31 @@
                       <p style="color:white"><i>Enterprise Operation Solution</i></p> 
                     </div>
 
-                    <span class="auto-style1"><strong>Home</strong></span><ul class="newStyle1"> 
+                    <ul class="newStyle1"> 
                         <li> <asp:LinkButton ID="LinkButton15" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton> </li>
                         <li><asp:LinkButton ID="LinkButton1" runat="server">Store</asp:LinkButton></li>         
                         <li> <asp:LinkButton ID="LinkButton3" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton13" runat="server">Rewards</asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton14" runat="server">Checkout</asp:LinkButton></li>
                         &nbsp;</ul>
-                    <span class="newStyle1">
-                    <br />
-                    <br />
-                    Promos/Popular Items (needs to be adjusted so it looks more alligned on the site<br />
-                    <br />
-                    </span>
-                    <span class="newStyle1">
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    </span>
+               
+                    <div class ="col-lg-6" style ="align-content:center">
+                        <div class="panel panel-default, center">
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-shopping-cart"></i><h4 class ="hometext">Enter Store</h4></div>
+                        </div>
+                        <div class="panel panel-default, center">
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-user"></i><h4 class ="hometext">Enter Manager Area</h4></div>
+                        </div>
+                        <div class="panel panel-default, center" >
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-shopping-cart"></i><h4 class ="hometext">Enter Store</h4></div>
+                        </div>
+                        <div class="panel panel-default, center">
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-user"></i><h4 class ="hometext">Enter Manager Area</h4></div>
+                    </div>
+                    </div>
+                  
+                  
+                 
                 </asp:View>
                 <asp:View ID="View2" runat="server">
                     <span class="auto-style1"><strong>Store</strong></span>
