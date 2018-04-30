@@ -66,7 +66,7 @@ Partial Class Store
             PurchasePrice -= (CDec(tbUseRewards.Text) / 10)
             decRewardCalc -= CDec(tbUseRewards.Text)
             decRewardCalc += (PurchasePrice / 5)
-                    PurchasePrice *= ddlShopQuantity.SelectedValue
+            PurchasePrice *= ddlShopQuantity.SelectedValue
         Else
             decRewardCalc = (PurchasePrice / 5)
         End If
@@ -102,8 +102,8 @@ Partial Class Store
         Finally
             con.Close()
         End Try
-        lblCost.Visible = True
-        lblCost.Text = PurchasePrice
+        ' lblCost.Visible = True
+        ' lblCost.Text = PurchasePrice
     End Sub
 
 #End Region
@@ -148,7 +148,7 @@ Partial Class Store
                 PurchasePrice = .Item("ProductPrice")
 
             End With
-            FillSizeDDL()
+            'FillSizeDDL()
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
@@ -158,56 +158,56 @@ Partial Class Store
 #End Region
 
 #Region "Size selecting"
-    Private Sub FillSizeDDL()
-        Dim SelectSize As New SqlDataAdapter("SELECT ProductID, ProductSize FROM pProducts WHERE ProductName = @p1", con)
-        Dim dtSize As New DataTable
+    'Private Sub FillSizeDDL()
+    '    Dim SelectSize As New SqlDataAdapter("SELECT ProductID, ProductSize FROM pProducts WHERE ProductName = @p1", con)
+    '    Dim dtSize As New DataTable
 
 
-        With SelectSize.SelectCommand.Parameters
-            .Clear()
-            .AddWithValue("@p1", ddlShopSelect.SelectedItem.Text)
+    '    With SelectSize.SelectCommand.Parameters
+    '        .Clear()
+    '        .AddWithValue("@p1", ddlShopSelect.SelectedItem.Text)
 
-        End With
+    '    End With
 
-        Try
-            SelectSize.Fill(dtSize)
+    '    Try
+    '        SelectSize.Fill(dtSize)
 
-            With ddlSelectSize
+    '        With ddlSelectSize
 
-                .DataSource = dtSize
-                .DataValueField = "ProductID"
-                .DataTextField = "ProductSize"
-                .DataBind()
-                .Items.Insert(0, "Select a Size")
-            End With
-        Catch ex As Exception
-            Response.Write(ex.Message)
-        Finally
-            con.Close()
-        End Try
-    End Sub
-    Protected Sub ddlSelectSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlSelectSize.SelectedIndexChanged
+    '            .DataSource = dtSize
+    '            .DataValueField = "ProductID"
+    '            .DataTextField = "ProductSize"
+    '            .DataBind()
+    '            .Items.Insert(0, "Select a Size")
+    '        End With
+    '    Catch ex As Exception
+    '        Response.Write(ex.Message)
+    '    Finally
+    '        con.Close()
+    '    End Try
+    'End Sub
+    'Protected Sub ddlSelectSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlSelectSize.SelectedIndexChanged
 
-        Dim daGetSize As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductSize = @p1", con)
-        Dim dtSize As New DataTable
+    '    Dim daGetSize As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductSize = @p1", con)
+    '    Dim dtSize As New DataTable
 
-        With daGetSize.SelectCommand.Parameters
-            .Clear()
-            .AddWithValue("@p1", ddlSelectSize.SelectedValue)
+    '    With daGetSize.SelectCommand.Parameters
+    '        .Clear()
+    '        .AddWithValue("@p1", ddlSelectSize.SelectedValue)
 
-        End With
+    '    End With
 
-        Try
-            daGetSize.Fill(dtSize)
-            With dtSize.Rows(0)
+    '    Try
+    '        daGetSize.Fill(dtSize)
+    '        With dtSize.Rows(0)
 
-            End With
-        Catch ex As Exception
-            Response.Write(ex.Message)
-        End Try
+    '        End With
+    '    Catch ex As Exception
+    '        Response.Write(ex.Message)
+    '    End Try
 
 
-    End Sub
+    'End Sub
 
 
 #End Region

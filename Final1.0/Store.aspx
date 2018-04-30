@@ -118,6 +118,12 @@
             font-size: 50px; 
             color: white; 
  }
+        .auto-style5 {
+            height: 27px;
+        }
+        .auto-style6 {
+            height: 56px;
+        }
     </style>
 
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -190,19 +196,12 @@
                     <br />
                     <table class="auto-style2">
                         <tr>
-                            <td class="auto-style21">Select Item(Fill from sql based off section selection)</td>
-                            <td>
+                            <td class="auto-style6">Select Item(Fill from sql based off section selection)</td>
+                            <td class="auto-style6">
                                 <asp:DropDownList ID="ddlShopSelect" runat="server" AutoPostBack="True">
                                 </asp:DropDownList>
                             </td>
-                            <td class="auto-style11">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style21">Item Picture(pull from ddl above)</td>
-                            <td>
-                                <asp:Image ID="iStorDDL" runat="server" Height="171px" Width="257px" />
-                            </td>
-                            <td class="auto-style11">&nbsp;</td>
+                            <td class="auto-style6"></td>
                         </tr>
                         <tr>
                             <td class="auto-style22">
@@ -223,6 +222,11 @@
                                     <asp:ListItem>10</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
+                            <td class="auto-style12">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style22">&nbsp;</td>
+                            <td class="auto-style8">&nbsp;</td>
                             <td class="auto-style12">&nbsp;</td>
                         </tr>
                         <tr>
