@@ -240,6 +240,18 @@
                             <td class="auto-style10">Select Size</td>
                             <td class="auto-style10">
                                 <asp:DropDownList ID="ddlSelectSize" runat="server" AutoPostBack="True">
+                                    <asp:ListItem>Select a size</asp:ListItem>
+                                    <asp:ListItem>5</asp:ListItem>
+                                    <asp:ListItem>6</asp:ListItem>
+                                    <asp:ListItem>7</asp:ListItem>
+                                    <asp:ListItem>8</asp:ListItem>
+                                    <asp:ListItem>9</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>11</asp:ListItem>
+                                    <asp:ListItem>12</asp:ListItem>
+                                    <asp:ListItem>13</asp:ListItem>
+                                    <asp:ListItem>14</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                             <td class="auto-style10"></td>
@@ -295,7 +307,7 @@
                         <tr>
                             <td class="auto-style30">Total Of purchase</td>
                             <td class="auto-style19">
-                                <asp:Label ID="lblCost" runat="server" Text="Label"></asp:Label>
+                                <asp:Label ID="lblCost" runat="server" Text="Label" Visible="False"></asp:Label>
                             </td>
                             <td class="auto-style20">&nbsp;</td>
                         </tr>

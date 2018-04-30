@@ -40,7 +40,7 @@ Partial Class Store
 #Region "Making A sale"
     Protected Sub bPurchaseItem_Click(sender As Object, e As EventArgs) Handles bPurchaseItem.Click
 
-        Dim cmdInsertProductSale As New SqlCommand("INSERT pTransactionHistory (ProductID, ProductName, Quantity, CustomerID) VALUES (@p1, @p2, @p3, @p4)", con)
+        Dim cmdInsertProductSale As New SqlCommand("INSERT pTransactionHistory (ProductID, ProductName, ProductSize, Quantity, CustomerID) VALUES (@p1, @p2, @p3, @p4, @p5)", con)
 
         Dim decRewardCalc As New Decimal
 
@@ -48,13 +48,15 @@ Partial Class Store
             .Clear()
             .AddWithValue("@p1", ddlShopSelect.SelectedValue)
             .AddWithValue("@p2", ddlShopSelect.SelectedItem.Text)
-            .AddWithValue("@p3", ddlShopQuantity.SelectedValue)
-            .AddWithValue("@p4", tbSaleRewards.Text)
+            .AddWithValue("@p3", ddlSelectSize.SelectedValue)
+            .AddWithValue("@p4", ddlShopQuantity.SelectedValue)
+            .AddWithValue("@p5", tbSaleRewards.Text)
         End With
 
         Dim updateCustomer As New SqlCommand("UPDATE pCustomers SET TotalOrders += 1, RewardPoints += @p2 WHERE CustomerID = @p1", con)
         Dim updateFavorites As New SqlCommand("UPDATE pFavorites SET TimesPurchased += @p2 WHERE ProductID = @p1", con)
         Dim updateInventory As New SqlCommand("UPDATE pProducts SET ProductInventory -= @p2 WHERE ProductID = @p1", con)
+
 
         'rewards calc
         If IsNumeric(tbUseRewards.Text) = True Then
@@ -65,6 +67,7 @@ Partial Class Store
             PurchasePrice *= ddlShopQuantity.SelectedValue
         Else
             decRewardCalc = (PurchasePrice / 5)
+            PurchasePrice *= ddlShopQuantity.SelectedValue
         End If
 
         With updateCustomer.Parameters
@@ -100,14 +103,20 @@ Partial Class Store
         End Try
         lblCost.Visible = True
         lblCost.Text = PurchasePrice
-    End Sub
 
+        'Clear inputs on page after purchase is made
+        ddlShopSelect.SelectedValue = Nothing
+        ddlShopQuantity.SelectedValue = Nothing
+        ddlSelectSize.SelectedValue = Nothing
+        tbSaleRewards.Text = Nothing
+        tbUseRewards.Text = Nothing
+    End Sub
 #End Region
 
 #Region "Fill Product list DDL"
     Public Shared PurchasePrice As Decimal
     Private Sub FILLDDLProductsList()
-        Dim SelectProduct As New SqlDataAdapter("SELECT ProductPrice, ProductName FROM pProducts", con)
+        Dim SelectProduct As New SqlDataAdapter("SELECT ProductID, ProductName FROM pProducts", con)
         Dim dtProduct As New DataTable
 
         Try
@@ -116,7 +125,7 @@ Partial Class Store
             With ddlShopSelect
 
                 .DataSource = dtProduct
-                .DataValueField = "ProductPrice"
+                .DataValueField = "ProductID"
                 .DataTextField = "ProductName"
                 .DataBind()
                 .Items.Insert(0, "Select a product")
@@ -129,12 +138,13 @@ Partial Class Store
     End Sub
 
     Protected Sub ddlShopSelect_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlShopSelect.SelectedIndexChanged
-        Dim daSelectProduct As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductPrice= @p1", con)
+        Dim daSelectProduct As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductID = @p1", con)
+
         Dim dtProducts As New DataTable
 
         With daSelectProduct.SelectCommand.Parameters
             .Clear()
-            .AddWithValue("@p1", ddlShopSelect.SelectedItem.Text)
+            .AddWithValue("@p1", ddlShopSelect.SelectedValue)
         End With
 
         Try
@@ -144,7 +154,7 @@ Partial Class Store
                 PurchasePrice = .Item("ProductPrice")
 
             End With
-            FillSizeDDL()
+            ' FillSizeDDL()
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
@@ -154,56 +164,56 @@ Partial Class Store
 #End Region
 
 #Region "Size selecting"
-    Private Sub FillSizeDDL()
-        Dim SelectSize As New SqlDataAdapter("SELECT ProductID, ProductSize FROM pProducts WHERE ProductName = @p1", con)
-        Dim dtSize As New DataTable
+    'Private Sub FillSizeDDL()
+    '    Dim SelectSize As New SqlDataAdapter("SELECT ProductID, ProductSize FROM pProducts WHERE ProductName = @p1", con)
+    '    Dim dtSize As New DataTable
 
 
-        With SelectSize.SelectCommand.Parameters
-            .Clear()
-            .AddWithValue("@p1", ddlShopSelect.SelectedItem.Text)
+    '    With SelectSize.SelectCommand.Parameters
+    '        .Clear()
+    '        .AddWithValue("@p1", ddlShopSelect.SelectedItem.Text)
 
-        End With
+    '    End With
 
-        Try
-            SelectSize.Fill(dtSize)
+    '    Try
+    '        SelectSize.Fill(dtSize)
 
-            With ddlSelectSize
+    '        With ddlSelectSize
 
-                .DataSource = dtSize
-                .DataValueField = "ProductID"
-                .DataTextField = "ProductSize"
-                .DataBind()
-                .Items.Insert(0, "Select a Size")
-            End With
-        Catch ex As Exception
-            Response.Write(ex.Message)
-        Finally
-            con.Close()
-        End Try
-    End Sub
-    Protected Sub ddlSelectSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlSelectSize.SelectedIndexChanged
+    '            .DataSource = dtSize
+    '            .DataValueField = "ProductID"
+    '            .DataTextField = "ProductSize"
+    '            .DataBind()
+    '            .Items.Insert(0, "Select a Size")
+    '        End With
+    '    Catch ex As Exception
+    '        Response.Write(ex.Message)
+    '    Finally
+    '        con.Close()
+    '    End Try
+    'End Sub
+    'Protected Sub ddlSelectSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlSelectSize.SelectedIndexChanged
 
-        Dim daGetSize As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductSize = @p1", con)
-        Dim dtSize As New DataTable
+    '    Dim daGetSize As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductSize = @p1", con)
+    '    Dim dtSize As New DataTable
 
-        With daGetSize.SelectCommand.Parameters
-            .Clear()
-            .AddWithValue("@p1", ddlSelectSize.SelectedValue)
+    '    With daGetSize.SelectCommand.Parameters
+    '        .Clear()
+    '        .AddWithValue("@p1", ddlSelectSize.SelectedValue)
 
-        End With
+    '    End With
 
-        Try
-            daGetSize.Fill(dtSize)
-            With dtSize.Rows(0)
+    '    Try
+    '        daGetSize.Fill(dtSize)
+    '        With dtSize.Rows(0)
 
-            End With
-        Catch ex As Exception
-            Response.Write(ex.Message)
-        End Try
+    '        End With
+    '    Catch ex As Exception
+    '        Response.Write(ex.Message)
+    '    End Try
 
 
-    End Sub
+    'End Sub
 
 
 #End Region
