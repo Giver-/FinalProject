@@ -6,24 +6,6 @@ Partial Class Store
 
     Public Shared con As New SqlConnection("Data Source=cb-ot-devst04.ad.wsu.edu;Initial Catalog=MF81ryan.j.griffin;Persist Security Info=True; User ID=ryan.j.griffin;Password=d3a8e399")
 
-
-    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
-
-        If Request.UrlReferrer IsNot Nothing Then
-            Dim previousPageUrl As String = Request.UrlReferrer.AbsoluteUri
-            Dim previousPageName As String = System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath)
-            Dim managePage As String = "ManagerLogin.aspx"
-            If managePage = previousPageName Then
-                MultiView1.ActiveViewIndex = 4
-                previousPageName = Nothing
-            End If
-        End If
-    End Sub
-
-
-
-
 #Region "Update and clear"
     Private Sub Store_Init(sender As Object, e As EventArgs) Handles Me.Init
 
@@ -38,6 +20,20 @@ Partial Class Store
         MaintainScrollPositionOnPostBack = True
 
     End Sub
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+
+        If Request.UrlReferrer IsNot Nothing Then
+            Dim previousPageUrl As String = Request.UrlReferrer.AbsoluteUri
+            Dim previousPageName As String = System.IO.Path.GetFileName(Request.UrlReferrer.AbsolutePath)
+            Dim managePage As String = "ManagerLogin.aspx"
+            If managePage = previousPageName Then
+                MultiView1.ActiveViewIndex = 4
+                previousPageName = Nothing
+            End If
+        End If
+    End Sub
+
 
 #End Region
     'Making Sale needs work
@@ -102,8 +98,8 @@ Partial Class Store
         Finally
             con.Close()
         End Try
-        ' lblCost.Visible = True
-        ' lblCost.Text = PurchasePrice
+        lblCost.Visible = True
+        lblCost.Text = PurchasePrice
     End Sub
 
 #End Region
@@ -148,7 +144,7 @@ Partial Class Store
                 PurchasePrice = .Item("ProductPrice")
 
             End With
-            'FillSizeDDL()
+            FillSizeDDL()
         Catch ex As Exception
             Response.Write(ex.Message)
         End Try
@@ -158,56 +154,56 @@ Partial Class Store
 #End Region
 
 #Region "Size selecting"
-    'Private Sub FillSizeDDL()
-    '    Dim SelectSize As New SqlDataAdapter("SELECT ProductID, ProductSize FROM pProducts WHERE ProductName = @p1", con)
-    '    Dim dtSize As New DataTable
+    Private Sub FillSizeDDL()
+        Dim SelectSize As New SqlDataAdapter("SELECT ProductID, ProductSize FROM pProducts WHERE ProductName = @p1", con)
+        Dim dtSize As New DataTable
 
 
-    '    With SelectSize.SelectCommand.Parameters
-    '        .Clear()
-    '        .AddWithValue("@p1", ddlShopSelect.SelectedItem.Text)
+        With SelectSize.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlShopSelect.SelectedItem.Text)
 
-    '    End With
+        End With
 
-    '    Try
-    '        SelectSize.Fill(dtSize)
+        Try
+            SelectSize.Fill(dtSize)
 
-    '        With ddlSelectSize
+            With ddlSelectSize
 
-    '            .DataSource = dtSize
-    '            .DataValueField = "ProductID"
-    '            .DataTextField = "ProductSize"
-    '            .DataBind()
-    '            .Items.Insert(0, "Select a Size")
-    '        End With
-    '    Catch ex As Exception
-    '        Response.Write(ex.Message)
-    '    Finally
-    '        con.Close()
-    '    End Try
-    'End Sub
-    'Protected Sub ddlSelectSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlSelectSize.SelectedIndexChanged
+                .DataSource = dtSize
+                .DataValueField = "ProductID"
+                .DataTextField = "ProductSize"
+                .DataBind()
+                .Items.Insert(0, "Select a Size")
+            End With
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        Finally
+            con.Close()
+        End Try
+    End Sub
+    Protected Sub ddlSelectSize_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlSelectSize.SelectedIndexChanged
 
-    '    Dim daGetSize As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductSize = @p1", con)
-    '    Dim dtSize As New DataTable
+        Dim daGetSize As New SqlDataAdapter("SELECT * FROM [pProducts] WHERE ProductSize = @p1", con)
+        Dim dtSize As New DataTable
 
-    '    With daGetSize.SelectCommand.Parameters
-    '        .Clear()
-    '        .AddWithValue("@p1", ddlSelectSize.SelectedValue)
+        With daGetSize.SelectCommand.Parameters
+            .Clear()
+            .AddWithValue("@p1", ddlSelectSize.SelectedValue)
 
-    '    End With
+        End With
 
-    '    Try
-    '        daGetSize.Fill(dtSize)
-    '        With dtSize.Rows(0)
+        Try
+            daGetSize.Fill(dtSize)
+            With dtSize.Rows(0)
 
-    '        End With
-    '    Catch ex As Exception
-    '        Response.Write(ex.Message)
-    '    End Try
+            End With
+        Catch ex As Exception
+            Response.Write(ex.Message)
+        End Try
 
 
-    'End Sub
+    End Sub
 
 
 #End Region

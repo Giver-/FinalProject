@@ -124,6 +124,18 @@
         .auto-style6 {
             height: 56px;
         }
+        .auto-style7 {
+            height: 28px;
+        }
+        .auto-style8 {
+            height: 60px;
+        }
+        .auto-style9 {
+            height: 61px;
+        }
+        .auto-style10 {
+            height: 52px;
+        }
     </style>
 
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -225,9 +237,12 @@
                             <td class="auto-style12">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style22">&nbsp;</td>
-                            <td class="auto-style8">&nbsp;</td>
-                            <td class="auto-style12">&nbsp;</td>
+                            <td class="auto-style10">Select Size</td>
+                            <td class="auto-style10">
+                                <asp:DropDownList ID="ddlSelectSize" runat="server" AutoPostBack="True">
+                                </asp:DropDownList>
+                            </td>
+                            <td class="auto-style10"></td>
                         </tr>
                         <tr>
                             <td class="auto-style27">Existing Rewards Member EnterID</td>
@@ -280,7 +295,7 @@
                         <tr>
                             <td class="auto-style30">Total Of purchase</td>
                             <td class="auto-style19">
-                                <asp:TextBox ID="tbTransactionTotal" runat="server"></asp:TextBox>
+                                <asp:Label ID="lblCost" runat="server" Text="Label"></asp:Label>
                             </td>
                             <td class="auto-style20">&nbsp;</td>
                         </tr>
