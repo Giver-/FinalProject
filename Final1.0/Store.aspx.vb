@@ -636,44 +636,44 @@ Partial Class Store
 
 #Region "Page Links"
     Protected Sub LinkButton1_Click(sender As Object, e As EventArgs) Handles LinkButton1.Click
-            MultiView1.ActiveViewIndex = 1
-        End Sub
-        Protected Sub LinkButton2_Click(sender As Object, e As EventArgs) Handles LinkButton2.Click
-            MultiView1.ActiveViewIndex = 2
-        End Sub
-        Protected Sub LinkButton3_Click(sender As Object, e As EventArgs) Handles LinkButton3.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
+    Protected Sub LinkButton2_Click(sender As Object, e As EventArgs) Handles LinkButton2.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton3_Click(sender As Object, e As EventArgs) Handles LinkButton3.Click
         Response.Redirect("ManagerLogin.aspx")
     End Sub
-        Protected Sub LinkButton4_Click(sender As Object, e As EventArgs) Handles LinkButton4.Click
-            MultiView1.ActiveViewIndex = 0
-        End Sub
-        Protected Sub LinkButton5_Click(sender As Object, e As EventArgs) Handles LinkButton5.Click
-            MultiView1.ActiveViewIndex = 1
-        End Sub
-        Protected Sub LinkButton6_Click(sender As Object, e As EventArgs) Handles LinkButton6.Click
-            MultiView1.ActiveViewIndex = 3
-        End Sub
-        Protected Sub LinkButton7_Click(sender As Object, e As EventArgs) Handles LinkButton7.Click
-            MultiView1.ActiveViewIndex = 2
-        End Sub
-        Protected Sub LinkButton8_Click(sender As Object, e As EventArgs) Handles LinkButton8.Click
-            MultiView1.ActiveViewIndex = 1
-        End Sub
-        Protected Sub LinkButton9_Click(sender As Object, e As EventArgs) Handles LinkButton9.Click
-            MultiView1.ActiveViewIndex = 0
-        End Sub
-        Protected Sub LinkButton10_Click(sender As Object, e As EventArgs) Handles LinkButton10.Click
-            MultiView1.ActiveViewIndex = 1
-        End Sub
-        Protected Sub LinkButton11_Click(sender As Object, e As EventArgs) Handles LinkButton11.Click
-            MultiView1.ActiveViewIndex = 2
-        End Sub
-        Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
-            MultiView1.ActiveViewIndex = 3
-        End Sub
-        Protected Sub LinkButton13_Click(sender As Object, e As EventArgs) Handles LinkButton13.Click
-            MultiView1.ActiveViewIndex = 2
-        End Sub
+    Protected Sub LinkButton4_Click(sender As Object, e As EventArgs) Handles LinkButton4.Click
+        MultiView1.ActiveViewIndex = 0
+    End Sub
+    Protected Sub LinkButton5_Click(sender As Object, e As EventArgs) Handles LinkButton5.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
+    Protected Sub LinkButton6_Click(sender As Object, e As EventArgs) Handles LinkButton6.Click
+        MultiView1.ActiveViewIndex = 0
+    End Sub
+    Protected Sub LinkButton7_Click(sender As Object, e As EventArgs) Handles LinkButton7.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton8_Click(sender As Object, e As EventArgs) Handles LinkButton8.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
+    Protected Sub LinkButton9_Click(sender As Object, e As EventArgs) Handles LinkButton9.Click
+        MultiView1.ActiveViewIndex = 0
+    End Sub
+    Protected Sub LinkButton10_Click(sender As Object, e As EventArgs) Handles LinkButton10.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
+    Protected Sub LinkButton11_Click(sender As Object, e As EventArgs) Handles LinkButton11.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton12_Click(sender As Object, e As EventArgs) Handles LinkButton12.Click
+        MultiView1.ActiveViewIndex = 3
+    End Sub
+    Protected Sub LinkButton13_Click(sender As Object, e As EventArgs) Handles LinkButton13.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
     Protected Sub LinkButton14_Click(sender As Object, e As EventArgs) Handles LinkButton14.Click
         MultiView1.ActiveViewIndex = 3
     End Sub
@@ -710,6 +710,19 @@ Partial Class Store
     Protected Sub LinkButton26_Click(sender As Object, e As EventArgs) Handles LinkButton26.Click
         Response.Redirect("ManagerLogin.aspx")
     End Sub
+    Protected Sub LinkButton27_Click(sender As Object, e As EventArgs) Handles LinkButton27.Click
+        MultiView1.ActiveViewIndex = 1
+    End Sub
+    Protected Sub LinkButton28_Click(sender As Object, e As EventArgs) Handles LinkButton28.Click
+        Response.Redirect("ManagerLogin.aspx")
+    End Sub
+    Protected Sub LinkButton29_Click(sender As Object, e As EventArgs) Handles LinkButton29.Click
+        MultiView1.ActiveViewIndex = 2
+    End Sub
+    Protected Sub LinkButton30_Click(sender As Object, e As EventArgs) Handles LinkButton30.Click
+        MultiView1.ActiveViewIndex = 3
+    End Sub
+
 #End Region
 
 End Class

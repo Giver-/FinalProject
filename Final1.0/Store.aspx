@@ -23,10 +23,10 @@
             padding: 10px;
         }
                 .center {
-            margin: inherit; 
-            text-align: center;
-            width: 300px;
-             
+  
+            
+            width: 200px;
+            text-align: center; 
 }   
 
 
@@ -68,7 +68,7 @@
             column-width: 200px; 
         }
         .panelstyle { 
-            width: 500px;
+            width: 350px;
             height: 125px; 
             padding: 20px; 
             background-color: lightblue; 
@@ -108,11 +108,16 @@
         .glyphicon.glyphicon-user {
             font-size: 50px;
             color: white; 
-} {
-            font-size: 50px;
+} 
+
+  .glyphicon.glyphicon-tag { 
+            font-size: 50px; 
             color: white; 
-}
- 
+  }
+ .glyphicon.glyphicon-star{
+            font-size: 50px; 
+            color: white; 
+ }
     </style>
 
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -146,20 +151,25 @@
                         <li> <asp:LinkButton ID="LinkButton14" runat="server">Checkout</asp:LinkButton></li>
                         &nbsp;</ul>
                
-                    <div class ="col-lg-6" style ="align-content:center">
+                  <div class ="container">
+                      <div class ="col-lg-4"></div>
+                      <div class ="col-lg-4">
                         <div class="panel panel-default, center">
-                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-shopping-cart"></i><h4 class ="hometext">Enter Store</h4></div>
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-shopping-cart"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton27" runat="server">Enter Store</asp:LinkButton></h4></div>
                         </div>
                         <div class="panel panel-default, center">
-                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-user"></i><h4 class ="hometext">Enter Manager Area</h4></div>
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-user"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton28" runat="server">Enter Manager Area</asp:LinkButton></h4></div>
                         </div>
                         <div class="panel panel-default, center" >
-                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-shopping-cart"></i><h4 class ="hometext">Enter Store</h4></div>
+                             <div class="panel-body, panelstyle"><i class = "glyphicon glyphicon-star"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton29" runat="server">Enter Rewards Center</asp:LinkButton></h4></div>
                         </div>
                         <div class="panel panel-default, center">
-                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-user"></i><h4 class ="hometext">Enter Manager Area</h4></div>
-                    </div>
-                    </div>
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-tag"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton30" runat="server">Enter Checkout</asp:LinkButton></h4></div>
+                        </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+              
+                   </div>
                   
                   
                  
