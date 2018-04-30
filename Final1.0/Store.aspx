@@ -22,6 +22,12 @@
             width: 300px;
             padding: 10px;
         }
+                .center {
+  
+            
+            width: 200px;
+            text-align: center; 
+}   
 
 
         .leftgrid {
@@ -30,7 +36,10 @@
             left: 20px;
             padding: 10px;
         }
-
+        .hometext {
+            color: white; 
+            
+        }
  
         ul { 
             list-style-type: none;
@@ -58,6 +67,13 @@
         .columnwidth{ 
             column-width: 200px; 
         }
+        .panelstyle { 
+            width: 350px;
+            height: 125px; 
+            padding: 20px; 
+            background-color: lightblue; 
+        }
+
        
        html *
     {
@@ -85,77 +101,23 @@
         .auto-style4 {
             height: 46px;
         }
-        .auto-style5 {
-            width: 260px;
-        }
-        .auto-style6 {
-            height: 51px;
-            width: 353px;
-        }
-        .auto-style7 {
-            height: 46px;
-            width: 260px;
-        }
-        .auto-style9 {
-            height: 46px;
-            width: 353px;
-        }
-        .auto-style10 {
-            width: 353px;
-        }
-        .auto-style11 {
-            height: 29px;
-            width: 1543px;
-        }
-        .auto-style12 {
-            height: 26px;
-        }
-        .auto-style13 {
-            width: 353px;
-            height: 26px;
-        }
-        .auto-style14 {
-            height: 50px;
-        }
-        .auto-style15 {
-            width: 353px;
-            height: 44px;
-        }
-        .auto-style16 {
-            width: 353px;
-            height: 50px;
-        }
-        .auto-style18 {
-            height: 50px;
-            width: 237px;
-        }
-        .auto-style20 {
-            height: 46px;
-            width: 237px;
-        }
-        .auto-style21 {
-            height: 50px;
-            width: 334px;
-        }
-        .auto-style22 {
-            height: 46px;
-            width: 334px;
-        }
-        .auto-style23 {
-            width: 391px;
-        }
-        .auto-style24 {
-            width: 391px;
-            height: 50px;
-        }
-        .auto-style25 {
-            height: 51px;
-            width: 391px;
-        }
-        .auto-style26 {
-            height: 46px;
-            width: 391px;
-        }
+        .glyphicon.glyphicon-shopping-cart {
+            font-size: 50px;
+            color: white; 
+}
+        .glyphicon.glyphicon-user {
+            font-size: 50px;
+            color: white; 
+} 
+
+  .glyphicon.glyphicon-tag { 
+            font-size: 50px; 
+            color: white; 
+  }
+ .glyphicon.glyphicon-star{
+            font-size: 50px; 
+            color: white; 
+ }
     </style>
 
      <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -169,6 +131,7 @@
   
 
 </head>
+  
 <body>
     <form id="form1" runat="server">
       
@@ -180,25 +143,36 @@
                       <p style="color:white"><i>Enterprise Operation Solution</i></p> 
                     </div>
 
-                    <span class="auto-style1"><strong>Home</strong></span><ul class="newStyle1"> 
+                    <ul class="newStyle1"> 
                         <li> <asp:LinkButton ID="LinkButton15" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton> </li>
                         <li><asp:LinkButton ID="LinkButton1" runat="server">Store</asp:LinkButton></li>         
                         <li> <asp:LinkButton ID="LinkButton3" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton13" runat="server">Rewards</asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton14" runat="server">Checkout</asp:LinkButton></li>
                         &nbsp;</ul>
-                    <span class="newStyle1">
-                    <br />
-                    <br />
-                    Promos/Popular Items (needs to be adjusted so it looks more alligned on the site<br />
-                    <br />
-                    </span>
-                    <span class="newStyle1">
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    </span>
+               
+                  <div class ="container">
+                      <div class ="col-lg-4"></div>
+                      <div class ="col-lg-4">
+                        <div class="panel panel-default, center">
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-shopping-cart"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton27" runat="server">Enter Store</asp:LinkButton></h4></div>
+                        </div>
+                        <div class="panel panel-default, center">
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-user"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton28" runat="server">Enter Manager Area</asp:LinkButton></h4></div>
+                        </div>
+                        <div class="panel panel-default, center" >
+                             <div class="panel-body, panelstyle"><i class = "glyphicon glyphicon-star"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton29" runat="server">Enter Rewards Center</asp:LinkButton></h4></div>
+                        </div>
+                        <div class="panel panel-default, center">
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-tag"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton30" runat="server">Enter Checkout</asp:LinkButton></h4></div>
+                        </div>
+                        </div>
+                        <div class="col-lg-4"></div>
+              
+                   </div>
+                  
+                  
+                 
                 </asp:View>
                 <asp:View ID="View2" runat="server">
                     <span class="auto-style1"><strong>Store</strong></span>
@@ -214,27 +188,27 @@
                     <br />
                     Lists of items with ddl lits (and pictures?)<br />
                     <br />
-                    <table class="auto-style11">
+                    <table class="auto-style2">
                         <tr>
-                            <td class="auto-style23">Select Item(Fill from sql based off section selection)</td>
-                            <td class="auto-style10">
+                            <td class="auto-style21">Select Item(Fill from sql based off section selection)</td>
+                            <td>
                                 <asp:DropDownList ID="ddlShopSelect" runat="server" AutoPostBack="True">
                                 </asp:DropDownList>
                             </td>
                             <td class="auto-style11">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style23">Item Picture(pull from ddl above)</td>
-                            <td class="auto-style10">
+                            <td class="auto-style21">Item Picture(pull from ddl above)</td>
+                            <td>
                                 <asp:Image ID="iStorDDL" runat="server" Height="171px" Width="257px" />
                             </td>
                             <td class="auto-style11">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style23">
+                            <td class="auto-style22">
                                 <br />
                                 Select Quantity(just do a ddl up to 10 so the calculations are easier<br /> </td>
-                            <td class="auto-style10">
+                            <td class="auto-style8">
                                 <asp:DropDownList ID="ddlShopQuantity" runat="server" AutoPostBack="True">
                                     <asp:ListItem>Select Quantity</asp:ListItem>
                                     <asp:ListItem>1</asp:ListItem>
@@ -252,16 +226,8 @@
                             <td class="auto-style12">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style24">Select Size</td>
-                            <td class="auto-style16">
-                                <asp:DropDownList ID="ddlSelectSize" runat="server" AutoPostBack="True">
-                                </asp:DropDownList>
-                            </td>
-                            <td class="auto-style14"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style23">Existing Rewards Member EnterID</td>
-                            <td class="auto-style10">
+                            <td class="auto-style27">Existing Rewards Member EnterID</td>
+                            <td class="auto-style9">
                                 <asp:TextBox ID="tbSaleRewards" runat="server"></asp:TextBox>
                                 <br />
                             </td>
@@ -282,41 +248,41 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style25">
+                            <td class="auto-style3">
                                 <asp:Button ID="bViewCusRewards" runat="server" Text="View Customer Rewards" Width="236px" />
                             </td>
-                            <td class="auto-style6"></td>
+                            <td class="auto-style3"></td>
                             <td class="auto-style3"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style26">Use Rewards Points on purchase?</td>
-                            <td class="auto-style9">
+                            <td class="auto-style4">Use Rewards Points on purchase?</td>
+                            <td class="auto-style4">
                                 <asp:TextBox ID="tbUseRewards" runat="server"></asp:TextBox>
                             </td>
                             <td class="auto-style4">10 Reward Points is $1 off</td>
                         </tr>
                         <tr>
-                            <td class="auto-style23">&nbsp;</td>
-                            <td class="auto-style10">&nbsp;</td>
+                            <td class="auto-style29">&nbsp;</td>
+                            <td class="auto-style16">&nbsp;</td>
                             <td class="auto-style15">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style23">
+                            <td class="auto-style30">
                                 <asp:Button ID="bPurchaseItem" runat="server" Text="Purchase Items" Width="218px" />
                             </td>
-                            <td class="auto-style10"></td>
+                            <td class="auto-style19"></td>
                             <td class="auto-style20"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style23">Total Of purchase</td>
-                            <td class="auto-style10">
-                                <asp:Label ID="lblCost" runat="server" Text="Label" Visible="False"></asp:Label>
+                            <td class="auto-style30">Total Of purchase</td>
+                            <td class="auto-style19">
+                                <asp:TextBox ID="tbTransactionTotal" runat="server"></asp:TextBox>
                             </td>
                             <td class="auto-style20">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style23">Add Customer to rewards Program</td>
-                            <td class="auto-style10">
+                            <td class="auto-style21">Add Customer to rewards Program</td>
+                            <td>
                                 <asp:LinkButton ID="LinkButton2" runat="server">Add Customer</asp:LinkButton>
                             </td>
                             <td class="auto-style11">&nbsp;</td>
