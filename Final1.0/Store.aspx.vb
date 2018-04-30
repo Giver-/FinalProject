@@ -53,7 +53,7 @@ Partial Class Store
             .AddWithValue("@p5", tbSaleRewards.Text)
         End With
 
-        Dim updateCustomer As New SqlCommand("UPDATE pCustomers SET TotalOrders += 1, RewardPoints += @p2 WHERE CustomerID = @p1", con)
+        Dim updateCustomer As New SqlCommand("UPDATE pCustomers SET TotalOrders += 1, RewardPoints += @p2, MoneySpent = @p3 WHERE CustomerID = @p1", con)
         Dim updateFavorites As New SqlCommand("UPDATE pFavorites SET TimesPurchased += @p2 WHERE ProductID = @p1", con)
         Dim updateInventory As New SqlCommand("UPDATE pProducts SET ProductInventory -= @p2 WHERE ProductID = @p1", con)
 
@@ -66,14 +66,15 @@ Partial Class Store
             decRewardCalc += (PurchasePrice / 5)
             PurchasePrice *= ddlShopQuantity.SelectedValue
         Else
-            decRewardCalc = (PurchasePrice / 5)
             PurchasePrice *= ddlShopQuantity.SelectedValue
+            decRewardCalc = (PurchasePrice / 5)
         End If
 
         With updateCustomer.Parameters
             .Clear()
             .AddWithValue("@p1", tbSaleRewards.Text)
             .AddWithValue("@p2", decRewardCalc)
+            .AddWithValue("@p3", PurchasePrice)
         End With
 
         With updateFavorites.Parameters
