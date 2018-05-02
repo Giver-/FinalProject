@@ -542,8 +542,8 @@ Partial Class Store
         End Try
     End Sub
 
-    Private Sub OrderBySize() 'products
-        Dim RecordsProductOrder As New SqlDataAdapter("SELECT * FROM pProducts ORDER BY ProductSize", con)
+    Private Sub OrderByProdName() 'products
+        Dim RecordsProductOrder As New SqlDataAdapter("SELECT * FROM pProducts ORDER BY ProductName", con)
         Dim RecordsProductList As New DataTable
 
         If RecordsProductList.Rows.Count > 0 Then
@@ -595,7 +595,7 @@ Partial Class Store
             Case 1
                 OrderByInventory()
             Case 2
-                OrderBySize()
+                OrderByProdName()
         End Select
     End Sub
 #End Region
