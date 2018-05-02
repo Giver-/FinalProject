@@ -49,7 +49,7 @@
             padding: 0; 
             overflow: hidden; 
             z-index: 150;
-            background-color: #0094ff; 
+            background-color: #526881; 
         }
         li { 
             float: left; 
@@ -146,9 +146,13 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
-  
+ 
+
 
 </head>
+
+
+
   
 <body>
     <form id="form1" runat="server">
@@ -156,7 +160,7 @@
             <asp:MultiView ID="MultiView1" runat="server">
 
                 <asp:View ID="View1" runat="server">
-                    <div class="jumbotron text-center" style ="background:#0094ff">
+                    <div class="jumbotron text-center" style ="background:lightblue">
                       <h1 style ="color:white">Welcome to Deadstock</h1>
                       <p style="color:white"><i>Enterprise Operation Solution</i></p> 
                     </div>
@@ -193,7 +197,7 @@
                  
                 </asp:View>
                 <asp:View ID="View2" runat="server">
-                    <div class="left"><h2>Deadstock Solutions</h2></div>
+                    <div class="left"><h2>Deadstock</h2></div>
                     <ul>
                         <li><asp:LinkButton ID="LinkButton4" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton16" runat="server">Store</asp:LinkButton> </li>
@@ -308,7 +312,7 @@
                             <td >&nbsp;</td>
                         </tr>
                         <tr>
-                            <td style="padding:10px"><asp:LinkButton ID="LinkButton2" runat="server">Add Customer</asp:LinkButton></td>
+                            <td style="padding:10px"><asp:LinkButton ID="LinkButton2" runat="server">Add Customer to Rewards Program</asp:LinkButton></td>
                             <td>
                                 
                             </td>
@@ -320,7 +324,7 @@
  
                 </asp:View>
                 <asp:View ID="View3" runat="server">
-                   <div class ="left"><h2>Deadstock Solutions</h2></div><ul>
+                   <div class ="left"><h2>Deadstock</h2></div><ul>
                         <li><asp:LinkButton ID="LinkButton6" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton5" runat="server">Store</asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton20" runat="server">Manager Page</asp:LinkButton> </li>
@@ -406,7 +410,7 @@
                     <br />
                 </asp:View>
                 <asp:View ID="View4" runat="server">
-                    <div class="left"><h2>Deadstock Solutions</h2></div>
+                    <div class="left"><h2>Deadstock</h2></div>
                     <ul>
                         <li><asp:LinkButton ID="LinkButton23" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton8" runat="server">Store</asp:LinkButton></li>
@@ -479,7 +483,7 @@
                 </asp:View>
                    <asp:View ID="View5" runat="server">
                     
-                    <div class ="left"> <h2>Deadstock Solutions</h2></div>
+                    <div class ="left"> <h2>Deadstock</h2></div>
                     <ul>
                         <li><asp:LinkButton ID="LinkButton9" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                     &nbsp;&nbsp;
@@ -501,7 +505,7 @@
 
     <div class="accordion-group">
         <div class="accordion-heading">
-            <a href="#collapse-year-2012" data-parent="#my-accordion" data-toggle="collapse" class="accordion-toggle btn btn-info">Hide/Show</a>
+            <a href="#collapse-year-2012" data-parent="#my-accordion" data-toggle="collapse" class="accordion-toggle btn btn-primary">Hide/Show</a>
         </div>
        <div class="accordion-body collapse in" id="collapse-year-2012">
             <div class ="accordion-inner"> 
@@ -520,7 +524,7 @@
                                                                                     <asp:ListItem>Sort By Product</asp:ListItem>
                                                                                     <asp:ListItem>Sort by Transaction</asp:ListItem>
                                                                                     </asp:RadioButtonList>
-                                                                                    <asp:Button ID="btFilterTransactions" runat="server" Text="Submit" />
+                                                                                    <asp:Button ID="btFilterTransactions" runat="server" Text="Submit" CssClass="btn btn-default" />
                                                                           </div>
                                                                         </div> 
                                                                     </div>
@@ -556,7 +560,7 @@
                                                                     <asp:ListItem>Sort by Size</asp:ListItem>
                                                                     </asp:RadioButtonList>
 
-                                                                    <asp:Button ID="btProductOrderBy" runat="server" Text="Submit" />
+                                                                    <asp:Button ID="btProductOrderBy" runat="server" Text="Submit" CssClass="btn btn-default" />
                                                           </div>
                                                         </div> 
                                                     </div>
@@ -592,7 +596,7 @@
                                                                                     <asp:ListItem>Sort by Amount Spent</asp:ListItem>
                                                                                     </asp:RadioButtonList>
 
-                                                                                    <asp:Button ID="btCustomerData" runat="server" Text="Submit" />
+                                                                                    <asp:Button ID="btCustomerData" runat="server" Text="Submit" CssClass="btn btn-default" />
                                                                                 </div>
                                                                         </div> 
                                                                     </div>
@@ -629,7 +633,7 @@
                 <h4>Inventory Management</h4>
                     <div class="accordion-group">
                             <div class="accordion-heading">
-                                <a href="#collapse-year-2013" data-parent="#my-accordion2" data-toggle="collapse" class="accordion-toggle btn btn-info">Hide/Show</a>
+                                <a href="#collapse-year-2013" data-parent="#my-accordion2" data-toggle="collapse" class="accordion-toggle btn btn-primary">Hide/Show</a>
                                             </div>
                                                 <div class="accordion-body collapse in" id="collapse-year-2013">
                                                         <div class ="accordion-inner, left">
@@ -666,7 +670,7 @@
                                                                         <p></p>
                                                                         <asp:Button ID="btUpdateInventory" runat="server" Text="Update" Width="116px" />
                                                                         <p></p>
-                                                                        <asp:Button ID="btInvMgmtClear" runat="server" Text="Clear" Width="116px" />
+                                                                        <asp:Button ID="btInvMgmtClear" runat="server" Text="Clear" Width="116px" CssClass="btn btn-default" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -706,5 +710,18 @@
 
        
     </form>
+<footer class="w3-center w3-lightblue w3-padding-64" style="background:#9f9f9f; height:300px;  position:relative; z-index:20;" > 
+
+    <!--Copyright-->
+ 
+  <div class="w3-xlarge w3-section">
+
+    <i class="fa fa-linkedin w3-hover-opacity" style="color:white" ><a href="https://www.linkedin.com/feed/"></a></i>
+
+
+  </div>
+  <p style="color:white"><strong>By Jared Garalde and Ryan Griffin</strong></p>
+
+</footer>
 </body>
 </html>

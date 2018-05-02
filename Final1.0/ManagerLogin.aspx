@@ -20,7 +20,7 @@
 
         
         body {
-            background: #0094ff
+            background: #526881
         }
         div {
     width: 300px;
