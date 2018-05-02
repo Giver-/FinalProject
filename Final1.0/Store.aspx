@@ -662,13 +662,10 @@
  
                                                                         <asp:TextBox ID="tbProductInventory" runat="server"></asp:TextBox>
                                                                         <p></p>
-                                                                        <p>Product Size</p>
 
-                                                                        <asp:TextBox ID="tbProductSize" runat="server"></asp:TextBox>
-                                                                        <p> </p>
-                                                                        <asp:Button ID="btAddInventory" runat="server" Text="Add New" Width="116px" />
+                                                                        <asp:Button ID="btAddInventory" runat="server" Text="Add New" Width="116px" CssClass="btn btn-default" />
                                                                         <p></p>
-                                                                        <asp:Button ID="btUpdateInventory" runat="server" Text="Update" Width="116px" />
+                                                                        <asp:Button ID="btUpdateInventory" runat="server" Text="Update" Width="116px" CssClass="btn btn-default" />
                                                                         <p></p>
                                                                         <asp:Button ID="btInvMgmtClear" runat="server" Text="Clear" Width="116px" CssClass="btn btn-default" />
                                                                     </div>

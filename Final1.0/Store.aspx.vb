@@ -620,7 +620,6 @@ Partial Class Store
                 tbProductName.Text = .Item("ProductName")
                 tbProductPrice.Text = .Item("ProductPrice")
                 tbProductInventory.Text = .Item("ProductInventory")
-                tbProductSize.Text = .Item("ProductSize")
             End With
 
             FillProductTable()
@@ -633,7 +632,7 @@ Partial Class Store
 
     Protected Sub btAddInventory_Click(sender As Object, e As EventArgs) Handles btAddInventory.Click
 
-        Dim cmdInsertNewInventory As New SqlCommand("INSERT pProducts (ProductID, ProductName, ProductPrice, ProductInventory, ProductSize) VALUES (@p1, @p2, @p3, @p4, @p5)", con)
+        Dim cmdInsertNewInventory As New SqlCommand("INSERT pProducts (ProductID, ProductName, ProductPrice, ProductInventory) VALUES (@p1, @p2, @p3, @p4)", con)
 
         With cmdInsertNewInventory.Parameters
             .Clear()
@@ -641,7 +640,6 @@ Partial Class Store
             .AddWithValue("@p2", tbProductName.Text)
             .AddWithValue("@p3", tbProductPrice.Text)
             .AddWithValue("@p4", tbProductInventory.Text)
-            .AddWithValue("@p5", tbProductSize.Text)
 
         End With
 
@@ -658,15 +656,14 @@ Partial Class Store
     End Sub
 
     Protected Sub btUpdateInventory_Click(sender As Object, e As EventArgs) Handles btUpdateInventory.Click
-        Dim UpdateCommand As New SqlCommand("Update pProducts SET ProductName = @p1, ProductPrice = @p2, ProductInventory= @p3, ProductSize = @p4 WHERE ProductID = @p5", con)
+        Dim UpdateCommand As New SqlCommand("Update pProducts SET ProductName = @p1, ProductPrice = @p2, ProductInventory= @p3 WHERE ProductID = @p4", con)
 
         With UpdateCommand.Parameters
             .Clear()
             .AddWithValue("@p1", tbProductName.Text)
             .AddWithValue("@p2", tbProductPrice.Text)
             .AddWithValue("@p3", tbProductInventory.Text)
-            .AddWithValue("@p4", tbProductSize.Text)
-            .AddWithValue("@p5", ddlInventoryFill.SelectedValue)
+            .AddWithValue("@p4", ddlInventoryFill.SelectedValue)
         End With
 
         Try
@@ -691,7 +688,7 @@ Partial Class Store
         tbProductName.Text = Nothing
         tbProductPrice.Text = Nothing
         tbProductInventory.Text = Nothing
-        tbProductSize.Text = Nothing
+
 
     End Sub
 #End Region
