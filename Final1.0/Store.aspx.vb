@@ -53,7 +53,7 @@ Partial Class Store
             .AddWithValue("@p5", tbSaleRewards.Text)
         End With
 
-        Dim updateCustomer As New SqlCommand("UPDATE pCustomers SET TotalOrders += 1, RewardPoints += @p2, MoneySpent = @p3 WHERE CustomerID = @p1", con)
+        Dim updateCustomer As New SqlCommand("UPDATE pCustomers SET TotalOrders = TotalOrders + 1, RewardPoints += @p2, MoneySpent = @p3 WHERE CustomerID = @p1", con)
         Dim updateFavorites As New SqlCommand("UPDATE pFavorites SET TimesPurchased += @p2 WHERE ProductID = @p1", con)
         Dim updateInventory As New SqlCommand("UPDATE pProducts SET ProductInventory -= @p2 WHERE ProductID = @p1", con)
 
@@ -64,7 +64,7 @@ Partial Class Store
             PurchasePrice -= (CDec(tbUseRewards.Text) / 10)
             decRewardCalc -= CDec(tbUseRewards.Text)
             decRewardCalc += (PurchasePrice / 5)
-            PurchasePrice *= ddlShopQuantity.SelectedValue
+            PurchasePrice *= CInt(ddlShopQuantity.SelectedValue)
         Else
             PurchasePrice *= ddlShopQuantity.SelectedValue
             decRewardCalc = (PurchasePrice / 5)
@@ -75,6 +75,7 @@ Partial Class Store
             .AddWithValue("@p1", tbSaleRewards.Text)
             .AddWithValue("@p2", decRewardCalc)
             .AddWithValue("@p3", PurchasePrice)
+
         End With
 
         With updateFavorites.Parameters
@@ -115,7 +116,7 @@ Partial Class Store
 #End Region
 
 #Region "Fill Product list DDL"
-    Public Shared PurchasePrice As Decimal
+    Public Shared PurchasePrice As Double
     Private Sub FILLDDLProductsList()
         Dim SelectProduct As New SqlDataAdapter("SELECT ProductID, ProductName FROM pProducts", con)
         Dim dtProduct As New DataTable

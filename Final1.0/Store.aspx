@@ -62,7 +62,7 @@
          text-decoration: none; 
         }
         li a:hover{ 
-            background-color: #898787; 
+            background-color: #ededed; 
         }
         .columnwidth{ 
             column-width: 200px; 
@@ -166,9 +166,9 @@
                         <li><asp:LinkButton ID="LinkButton1" runat="server">Store</asp:LinkButton></li>         
                         <li> <asp:LinkButton ID="LinkButton3" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton13" runat="server">Rewards</asp:LinkButton></li>
-                        <li> <asp:LinkButton ID="LinkButton14" runat="server">Checkout</asp:LinkButton></li>
+                        <li> <asp:LinkButton ID="LinkButton14" runat="server">Customers</asp:LinkButton></li>
                         &nbsp;</ul>
-               
+              <div class="well">
                   <div class ="container">
                       <div class ="col-lg-4"></div>
                       <div class ="col-lg-4">
@@ -182,44 +182,40 @@
                              <div class="panel-body, panelstyle"><i class = "glyphicon glyphicon-star"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton29" runat="server">Enter Rewards Center</asp:LinkButton></h4></div>
                         </div>
                         <div class="panel panel-default, center">
-                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-tag"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton30" runat="server">Enter Checkout</asp:LinkButton></h4></div>
+                             <div class="panel-body, panelstyle"><i class ="glyphicon glyphicon-tag"></i><h4 class ="hometext"><asp:LinkButton ID="LinkButton30" runat="server">Enter Customer Area</asp:LinkButton></h4></div>
                         </div>
                         </div>
                         <div class="col-lg-4"></div>
               
                    </div>
                   
-                  
+                </div>
                  
                 </asp:View>
                 <asp:View ID="View2" runat="server">
-                    <span class="auto-style1"><strong>Store</strong></span>
+                    <div class="left"><h2>Deadstock Solutions</h2></div>
                     <ul>
                         <li><asp:LinkButton ID="LinkButton4" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton16" runat="server">Store</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton17" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton18" runat="server">Rewards</asp:LinkButton> </li>
-                        <li> <asp:LinkButton ID="LinkButton19" runat="server">Checkout</asp:LinkButton> </li>
-
+                        <li> <asp:LinkButton ID="LinkButton19" runat="server">Customers</asp:LinkButton> </li>
                     </ul>
-                    <br />
-                    <br />
-                    Lists of items with ddl lits (and pictures?)<br />
-                    <br />
-                    <table class="auto-style2">
+             <div class ="left"><h3>Store</h3>
+                <div class="well" style="width:1300px"> 
+                    <table>
                         <tr>
-                            <td class="auto-style6">Select Item(Fill from sql based off section selection)</td>
-                            <td class="auto-style6">
+                            <td style="padding:10px">Select Item</td>
+                            <td>
                                 <asp:DropDownList ID="ddlShopSelect" runat="server" AutoPostBack="True">
                                 </asp:DropDownList>
                             </td>
-                            <td class="auto-style6"></td>
+
                         </tr>
                         <tr>
-                            <td class="auto-style22">
-                                <br />
-                                Select Quantity(just do a ddl up to 10 so the calculations are easier<br /> </td>
-                            <td class="auto-style8">
+                            <td style="padding:10px">
+                              Select Quantity</td>
+                            <td >
                                 <asp:DropDownList ID="ddlShopQuantity" runat="server" AutoPostBack="True">
                                     <asp:ListItem>Select Quantity</asp:ListItem>
                                     <asp:ListItem>1</asp:ListItem>
@@ -234,11 +230,11 @@
                                     <asp:ListItem>10</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                            <td class="auto-style12">&nbsp;</td>
+
                         </tr>
                         <tr>
-                            <td class="auto-style10">Select Size</td>
-                            <td class="auto-style10">
+                            <td style="padding:10px" >Select Size</td>
+                            <td >
                                 <asp:DropDownList ID="ddlSelectSize" runat="server" AutoPostBack="True">
                                     <asp:ListItem>Select a size</asp:ListItem>
                                     <asp:ListItem>5</asp:ListItem>
@@ -254,21 +250,25 @@
                                     <asp:ListItem>15</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                            <td class="auto-style10"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style27">Existing Rewards Member EnterID</td>
-                            <td class="auto-style9">
+                            <td style ="padding:10px">Enter Member ID</td>
+                            <td >
                                 <asp:TextBox ID="tbSaleRewards" runat="server"></asp:TextBox>
-                                <br />
+                      
                             </td>
-                            <td class="auto-style13">
-                                <asp:GridView ID="gvCustomerInStore" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        </tr>
+                         <tr>
+                            <td style="padding:20px"></td>
+                            <td> 
+                                <asp:GridView ID="gvCustomerInStore" runat="server" CellPadding="10" ForeColor="#333333" GridLines="None" CssClass="w3-table-all" >
+                                   
+                       
                                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                     <EditRowStyle BackColor="#999999" />
                                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                     <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />                            
                                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                                     <SortedAscendingCellStyle BackColor="#E9E7E2" />
@@ -276,128 +276,129 @@
                                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                                 </asp:GridView>
+                             </td>
+               
+                         </tr>
+                        
+                        <tr>
+                            <td style="padding:10px">
+                                <asp:Button ID="bViewCusRewards" runat="server" Text="View Customer Rewards" Width="215px" CssClass="btn btn-primary" />
                             </td>
+
                         </tr>
                         <tr>
-                            <td class="auto-style3">
-                                <asp:Button ID="bViewCusRewards" runat="server" Text="View Customer Rewards" Width="236px" />
-                            </td>
-                            <td class="auto-style3"></td>
-                            <td class="auto-style3"></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style4">Use Rewards Points on purchase?</td>
-                            <td class="auto-style4">
+                            <td style="padding:10px">Use Rewards Points?</td>
+                            <td >
                                 <asp:TextBox ID="tbUseRewards" runat="server"></asp:TextBox>
                             </td>
-                            <td class="auto-style4">10 Reward Points is $1 off</td>
+                            
                         </tr>
                         <tr>
-                            <td class="auto-style29">&nbsp;</td>
-                            <td class="auto-style16">&nbsp;</td>
-                            <td class="auto-style15">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style30">
-                                <asp:Button ID="bPurchaseItem" runat="server" Text="Purchase Items" Width="218px" />
+                            <td style="padding:10px">
+                                <asp:Button ID="bPurchaseItem" runat="server" Text="Log Purchase" CssClass="btn btn-primary" Width="215px" />
                             </td>
                             <td class="auto-style19"></td>
                             <td class="auto-style20"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style30">Total Of purchase</td>
-                            <td class="auto-style19">
+                            <td style="padding:10px">Total</td>
+                            <td >
                                 <asp:Label ID="lblCost" runat="server" Text="Label" Visible="False"></asp:Label>
                             </td>
-                            <td class="auto-style20">&nbsp;</td>
+                            <td >&nbsp;</td>
                         </tr>
                         <tr>
-                            <td class="auto-style21">Add Customer to rewards Program</td>
+                            <td style="padding:10px"><asp:LinkButton ID="LinkButton2" runat="server">Add Customer</asp:LinkButton></td>
                             <td>
-                                <asp:LinkButton ID="LinkButton2" runat="server">Add Customer</asp:LinkButton>
+                                
                             </td>
-                            <td class="auto-style11">&nbsp;</td>
+                            <td >&nbsp;</td>
                         </tr>
                     </table>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                    </div>
+               </div> 
+ 
                 </asp:View>
                 <asp:View ID="View3" runat="server">
-                    <span class="auto-style1"><span class="auto-style2">&nbsp;Add Customer to Rewards Program</span></span><br />&nbsp;<ul>
+                   <div class ="left"><h2>Deadstock Solutions</h2></div><ul>
                         <li><asp:LinkButton ID="LinkButton6" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton5" runat="server">Store</asp:LinkButton></li>
                         <li> <asp:LinkButton ID="LinkButton20" runat="server">Manager Page</asp:LinkButton> </li>
                         <li> <asp:LinkButton ID="LinkButton21" runat="server">Rewards</asp:LinkButton> </li>
-                        <li> <asp:LinkButton ID="LinkButton22" runat="server">Checkout</asp:LinkButton> </li>
+                        <li> <asp:LinkButton ID="LinkButton22" runat="server">Customers</asp:LinkButton> </li>
                     </ul>
-                    &nbsp;<br />
-                    <br />
-                    Add a customer to the Rewards Program<br />
-                    <br />
-                    <table class="auto-style2">
+
+
+                <div class="left">
+                    <h3>Add a Customer to the Rewards Program</h3><br />
+                    <div class ="well" style ="width:500px">
+                    <table>
                         <tr>
-                            <td class="auto-style18">Add Customer to rewards program</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style18">Name </td>
-                            <td>
+
+                            <td >Name </td>
+                            <td style="padding: 10px">
                                 <asp:TextBox ID="tbNCName" runat="server"></asp:TextBox>
+                     
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style18">Email</td>
-                            <td>
+                            <td >Email</td>
+                            <td style ="padding:10px">
                                 <asp:TextBox ID="tbNCEmail" runat="server"></asp:TextBox>
+                                <br />
                             </td>
                         </tr>
-                        <tr>
-                            <td class="auto-style18">Address</td>
-                            <td>
+                        <tr >
+                            <td >Address</td>
+                            <td style ="padding:10px">
                                 <asp:TextBox ID="tbNCAddress" runat="server"></asp:TextBox>
+                                <br /> 
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style18">City</td>
-                            <td>
+                            <td >City</td>
+                            <td style ="padding:10px"> 
                                 <asp:TextBox ID="tbNCCity" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style18">State</td>
-                            <td>
+                            <td>State</td>
+                            <td style="padding: 10px">
                                 <asp:TextBox ID="tbNCState" runat="server"></asp:TextBox>
+                                
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style18">Zip code</td>
-                            <td>
+                            <td >Zip Code</td>
+                            <td style ="padding:10px">
                                 <asp:TextBox ID="tbNCZip" runat="server"></asp:TextBox>
+                                <br /> 
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style23">Credit Card #</td>
-                            <td class="auto-style24">
+                            <td >Credit Card Number</td>
+                            <td style ="padding:10px">
                                 <asp:TextBox ID="tbNCCreditCard" runat="server"></asp:TextBox>
+                                <br /> 
                             </td>
                         </tr>
-                        <tr>
-                            <td class="auto-style23">Bonus Reward Points?</td>
-                            <td class="auto-style24">
+                        <tr >
+                            <td >Bonus Reward Points?</td>
+                            <td style="padding:10px">
                                 <asp:TextBox ID="tbAddCustExtraReward" runat="server"></asp:TextBox>
+                                <br /> 
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style25">Add your info then select from the ddl</td>
-                            <td class="auto-style26">
-                                <asp:Button ID="bAddCustomer" runat="server" Text="Add Customer" Width="151px" />
+                            <td> </td>
+                            <td style ="padding:10px" >
+                                <asp:Button ID="bAddCustomer" runat="server" Text="Add Customer" Width="165px" CssClass="btn btn-primary" />
+                                <br /> 
                             </td>
                         </tr>
                     </table>
+                    </div>
+                </div>
                     <br />
                     <br />
                     <br />
@@ -405,56 +406,41 @@
                     <br />
                 </asp:View>
                 <asp:View ID="View4" runat="server">
-                    <span class="auto-style1">Customer Info</span><br />
+                    <div class="left"><h2>Deadstock Solutions</h2></div>
                     <ul>
                         <li><asp:LinkButton ID="LinkButton23" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton8" runat="server">Store</asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton24" runat="server">Manager Page</asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton7" runat="server">Rewards</asp:LinkButton></li>
-                        <li><asp:LinkButton ID="LinkButton25" runat="server">Checkout</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton25" runat="server">Customers</asp:LinkButton></li>
                     </ul>
-                    <br />
-                    <br />
-                    If a customer wants to see their info by not make a purchase<br />
-                    <br />
+                    <div class="left"><h3>Customer Area</h3></div>
+                <div class ="well">
                     <table class="nav-justified">
                         <tr>
-                            <td>Enter your unique Customer ID</td>
+                            <td style="padding:10px">Enter Unique Customer ID</td>
                             <td>
                                 <asp:TextBox ID="tbCustomerIDRewards" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style5">Retrive Records</td>
+                            <td style="padding:10px">Retrive Records</td>
                             <td class="auto-style5">
-                                <asp:Button ID="bGetReward" runat="server" Text="Get records" />
+                                <asp:Button ID="bGetReward" runat="server" Text="Get Records" CssClass="btn btn-primary"/>
                             </td>
                         </tr>
                         <tr>
-                            <td class="auto-style7">Reward Points to date</td>
+                            <td style="padding:10px">Reward Points to Date</td>
                             <td class="auto-style7">
                                 <asp:TextBox ID="tbRewardPointsLeft" runat="server"></asp:TextBox>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td>Favorite Items purchased</td>
-                            <td>Customer Info Shows Rewards</td>
+
+                            <!-----<td>Favorite Items purchased</td>--->
+                            <!----<td>Customer Info Shows Rewards</td>--->
                         </tr>
                         <tr>
                             <td>
-                                <asp:GridView ID="gvRewardFav" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                <asp:GridView ID="gvRewardFav" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" CssClass="w3-table-all">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <FooterStyle BackColor="#CCCCCC" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -467,7 +453,7 @@
                                 </asp:GridView>
                             </td>
                             <td>
-                                <asp:GridView ID="gvRewardCustomer" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                <asp:GridView ID="gvRewardCustomer" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" CssClass="w3-table-all">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <FooterStyle BackColor="#CCCCCC" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -481,6 +467,7 @@
                             </td>
                         </tr>
                     </table>
+                </div>
                     <br />
                     <br />
                     <br />
@@ -492,7 +479,7 @@
                 </asp:View>
                    <asp:View ID="View5" runat="server">
                     
-                    <span class="auto-style1"><strong>Manager</strong></span><br />
+                    <div class ="left"> <h2>Deadstock Solutions</h2></div>
                     <ul>
                         <li><asp:LinkButton ID="LinkButton9" runat="server"><i class="glyphicon glyphicon-home"></i></asp:LinkButton></li>
                     &nbsp;&nbsp;
@@ -501,16 +488,16 @@
                         <li><asp:LinkButton ID="LinkButton26" runat="server">Manager Page</asp:LinkButton></li>
                         <li><asp:LinkButton ID="LinkButton11" runat="server">Rewards</asp:LinkButton></li>
                     &nbsp;&nbsp;&nbsp;
-                        <li><asp:LinkButton ID="LinkButton12" runat="server">Checkout</asp:LinkButton></li>
+                        <li><asp:LinkButton ID="LinkButton12" runat="server">Customers</asp:LinkButton></li>
                     </ul>
 
 
                     <!----Shows Favortie items, stock, best customers, total revenue, item revenue -->
                          
-
-<div class="col-sm-8">
+<div class="left"><h3>Manager Area</h3></div>
+<div class="col-sm-8, well">
  <div id="my-accordion" class="accordion, left">
-    <h3>Store Data</h3>
+    <h4>Store Data</h4>
 
     <div class="accordion-group">
         <div class="accordion-heading">
@@ -541,7 +528,7 @@
                                                         <div class ="panel-body" style ="display:inline-block">
                                                           <table class ="auto-style2">
                                           
-                                                                <asp:GridView ID="gvInventMng" runat="server" AutoPostBack = "True" BackColor ="White"  BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                                                <asp:GridView ID="gvInventMng" runat="server" AutoPostBack = "True" BackColor ="White"  BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" CssClass="w3-table-all">
                                                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                                                     <FooterStyle BackColor="#CCCCCC" />
                                                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -576,7 +563,7 @@
                                         <div class ="panel-body" style ="display:inline-block">
                                           <table class ="auto-style2">
                                           
-                                                <asp:GridView ID="gvProductOrderBy" runat="server" AutoPostBack = "True" BackColor ="White"  BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                                <asp:GridView ID="gvProductOrderBy" runat="server" AutoPostBack = "True" BackColor ="White"  BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" CssClass="w3-table-all">
                                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                                     <FooterStyle BackColor="#CCCCCC" />
                                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -613,7 +600,7 @@
                                                             <div class ="panel-body" style ="display:inline-block">
                                                                      <table class="auto-style2">
                        
-                                                                        <asp:GridView ID="gvCustomerMng" runat="server" AutoPostBack = "Trye" BackColor="White" BorderColor="#999999"                 BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                                                        <asp:GridView ID="gvCustomerMng" runat="server" AutoPostBack = "Trye" BackColor="White" BorderColor="#999999"                 BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" CssClass="w3-table-all">
                                                                             <AlternatingRowStyle BackColor="#CCCCCC" />
                                                                             <FooterStyle BackColor="#CCCCCC" />
                                                                             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -638,8 +625,8 @@
        </div><!-- .accordion-body -->
     </div><!-- .accordion-group -->
 </div>            
-          <div class="col-sm-2"> <div id="my-accordion2" class="accordion, left" >
-                <h3>Inventory Management</h3>
+          <div class="col-sm-2, well"> <div id="my-accordion2" class="accordion, left" >
+                <h4>Inventory Management</h4>
                     <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a href="#collapse-year-2013" data-parent="#my-accordion2" data-toggle="collapse" class="accordion-toggle btn btn-info">Hide/Show</a>
