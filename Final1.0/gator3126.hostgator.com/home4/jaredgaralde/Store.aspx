@@ -557,7 +557,7 @@
                                                                    <asp:RadioButtonList ID="rblProductList" runat="server" AutoPostBack="False">
                                                                     <asp:ListItem>Sort By Price</asp:ListItem>
                                                                     <asp:ListItem>Sort By Inventory</asp:ListItem>
-                                                                    <asp:ListItem>Sort by Name</asp:ListItem>
+                                                                    <asp:ListItem>Sort by Size</asp:ListItem>
                                                                     </asp:RadioButtonList>
 
                                                                     <asp:Button ID="btProductOrderBy" runat="server" Text="Submit" CssClass="btn btn-default" />
